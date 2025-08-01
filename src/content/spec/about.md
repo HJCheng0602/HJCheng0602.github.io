@@ -1,9 +1,4 @@
 # About
-This is the demo site for [Fuwari](https://github.com/saicaca/fuwari).
+I am an undergraduate student majoring in Intelligence Science and Technology at Peking University. I'm currently in the early stages of exploring the 3R series (3D Reconstruction, Rendering, and Recognition). My main focus is on learning the fundamental theories and classic algorithms in this field. 
 
-::github{repo="saicaca/fuwari"}
-
-> ### Sources of images used in this site
-> - [Unsplash](https://unsplash.com/)
-> - [星と少女](https://www.pixiv.net/artworks/108916539) by [Stella](https://www.pixiv.net/users/93273965)
-> - [Rabbit - v1.4 Showcase](https://civitai.com/posts/586908) by [Rabbit_YourMajesty](https://civitai.com/user/Rabbit_YourMajesty)
+Here is my github profile : [HJCheng0602](https://github.com/HJCheng0602)
