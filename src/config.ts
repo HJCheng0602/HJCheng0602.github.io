@@ -71,7 +71,7 @@ export const profileConfig: ProfileConfig = {
 		{
 			name:"Xiaohongshu",
 			icon:"simple-icons:xiaohongshu",
-			url: "https://www.xiaohongshu.com/user/profile/66d5602e000000001d023f65"
+			url: "https://www.xiaohongshu.com/user/profile/66d5602e000000001d023f65",
 		},
 		{
 			name: "GitHub",
