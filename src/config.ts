@@ -69,8 +69,8 @@ export const profileConfig: ProfileConfig = {
 			url: "https://www.zhihu.com/people/42-3-38-8-46",
 		},
 		{
-			name:"Xiaohongshu",
-			icon:"simple-icons:xiaohongshu",
+			name: "Xiaohongshu",
+			icon: "simple-icons:xiaohongshu",
 			url: "https://www.xiaohongshu.com/user/profile/66d5602e000000001d023f65",
 		},
 		{
