@@ -9,8 +9,6 @@ draft: false
 lang: 'en'
 ---
 
-# Decription the Site
-
 Here, I build my first [website](https://hjcheng0602.github.io/)(not the first but the first one I'm serious about building/running)😋.
 
 My website will include:
