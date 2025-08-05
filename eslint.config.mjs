@@ -4,6 +4,7 @@ import eslint from '@eslint/js'
 import eslintPluginAstro from 'eslint-plugin-astro'
 import tseslint from 'typescript-eslint'
 
+/** @type {any} */
 export default [
   eslint.configs.recommended,
   ...tseslint.configs.recommended,

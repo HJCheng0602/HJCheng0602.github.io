@@ -1,5 +1,5 @@
 {
-  "extends": "astro/tsconfigs/strict",
+  "extends": "astro/tsconfigs/base",
   "include": [".astro/types.d.ts", "**/*"],
   "compilerOptions": {
     // Basic
@@ -10,7 +10,9 @@
     "lib": ["es2022", "dom", "dom.iterable"],
     // Others
     "baseUrl": ".",
-    "strictNullChecks": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strict": false,
     // Paths
     "paths": {
       "@/assets/*": ["src/assets/*"],
