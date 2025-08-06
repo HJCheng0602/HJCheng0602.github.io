@@ -15,62 +15,29 @@ const headings = [
 ---
 
 <PageLayout title='About' {headings} info='/about'>
-  <p>Developer / Designer</p>
+  <p>Student / Developer</p>
   <p>
-    Lorem ipsum dolor sit amet, vidit suscipit at mei. Quem denique mea id. Usu ei regione indoctum
-    dissentiunt, cu meliore fuisset mei, vel quod voluptua ne. Ex dicat impedit mel, at eum oratio
-    possit voluptatum.
+    I am an undergraduate student majoring in Intelligence Science and Technology at Peking University. I'm currently in the early stages of exploring the 3R series (3D Reconstruction, Rendering, and Recognition). My main focus is on learning the fundamental theories and classic algorithms in this field. 
   </p>
   <p>
-    My motto: Stay hungry, Stay foolish. <Spoiler>这里可以夹私货，比如为什么要演奏春日影！</Spoiler>
+    Drei Verwandlungen nenne ich euch des Geistes: wie der Geist zum Kameele wird, und zum Löwen das Kameel, und zum Kinde zuletzt der Löwe.
+   <Spoiler>喵喵喵当你划开这条你已经被戏耍了喵</Spoiler>
   </p>
-  <Button title='Sponsor Me' class='w-fit' href='/projects#sponsorship' style='ahead' />
 
   {/* general-talk */}
   <h2 id='hobbies'>Hobbies</h2>
   <ul>
-    <li>Lorem ipsum dolor sit amet, vidit suscipit at mei.</li>
+    <li>Western history from the Industrial Revolution to the Cold War.</li>
     <li>
-      Quem denique mea id. Usu ei regione indoctum dissentiunt, cu meliore fuisset mei, vel quod
-      voluptua ne.
+      Counter Strike!!!!!!!!!!mainly on the Perfect world platform.Donk is my god!!!!!!!!!<Spoiler>小洞大人可爱捏，顺便zontix😋</Spoiler>
     </li>
-    <li>Ex dicat impedit mel, at eum oratio possit voluptatum.</li>
-    <li>Impetus fuisset ullamcorper pri cu, his posse iisque ad, aliquam honestatis usu id.</li>
+    <li>Movies?maybe everyone should be intersted in movies....</li>
+    <li>Geography maps (x) P社战犯(✓)</li><Spoiler>HOI4 is the best game!</Spoiler>
   </ul>
 
   {/* tools */}
   <h2 id='tools'>Tools</h2>
   <p>Current support tools as follow:</p>
-  <ToolSection
-    class='mb-5'
-    title='Design'
-    tools={[
-      {
-        name: 'Photoshop',
-        description: 'Picture Editing',
-        href: 'https://www.adobe.com/products/photoshop',
-        icon: import('@/assets/tools/photoshop.svg?raw')
-      },
-      {
-        name: 'Illustrator',
-        description: 'Vector Drawing',
-        href: 'https://www.adobe.com/products/illustrator',
-        icon: import('@/assets/tools/illustrator.svg?raw')
-      },
-      {
-        name: 'After Effects',
-        description: 'Motion Graphics',
-        href: 'https://www.adobe.com/products/aftereffects',
-        icon: import('@/assets/tools/aftereffects.svg?raw')
-      },
-      {
-        name: 'Premiere Pro',
-        description: 'Video Editing',
-        href: 'https://www.adobe.com/products/premiere',
-        icon: import('@/assets/tools/premiere.svg?raw')
-      }
-    ]}
-  />
   <ToolSection
     class='mb-5'
     title='Productivity'
@@ -80,18 +47,6 @@ const headings = [
         description: 'Browser',
         href: 'https://www.google.com/chrome/',
         icon: import('@/assets/tools/chrome.svg?raw')
-      },
-      {
-        name: 'Firefox',
-        description: 'Browser',
-        href: 'https://www.mozilla.org/en-US/firefox',
-        icon: import('@/assets/tools/firefox.svg?raw')
-      },
-      {
-        name: 'Notion',
-        description: 'Note Taking',
-        href: 'https://www.notion.so/',
-        icon: import('@/assets/tools/notion.svg?raw')
       },
       {
         name: 'Typora',
@@ -117,12 +72,6 @@ const headings = [
         href: 'https://neovim.io/',
         icon: import('@/assets/tools/neovim.svg?raw')
       },
-      {
-        name: 'Sublime Text',
-        description: 'IDE',
-        href: 'https://www.sublimetext.com/',
-        icon: import('@/assets/tools/sublime.svg?raw')
-      }
     ]}
   />
   <ToolSection
@@ -159,39 +108,28 @@ const headings = [
   {/* social-networks */}
   <h2 id='social-networks'>Social Networks</h2>
   <p>
-    Lorem ipsum dolor sit amet, vidit suscipit at mei. Quem denique mea id. Usu ei regione indoctum
-    dissentiunt, cu meliore fuisset mei, vel quod voluptua ne.
+    Some accounts on other social platform.
   </p>
   <Substats
     stats={[
       {
         platform: 'GitHub',
         icon: 'github',
-        link: 'https://github.com/cworld1',
+        link: 'https://github.com/HJCheng0602',
         text: 'followers',
-        api: 'github/cworld1'
+        api: 'github/HJCheng0602'
       },
       {
-        platform: 'Telegram',
-        icon: 'telegram',
-        color: '#2ca5e0',
-        link: 'https://t.me/cworld0_cn',
-        text: 'subscribers',
-        api: 'telegram/cworld0_cn'
+        platform: 'Zhihu',
+        icon: 'zhihu',
+        link: 'https://www.zhihu.com/people/42-3-38-8-46'
       },
-      {
-        platform: 'Weibo',
-        icon: 'weibo',
-        color: '#e71f19',
-        link: 'https://weibo.com/cworld0',
-        text: 'followers',
-        api: 'weibo/5501674056'
-      },
+
       {
         platform: 'Steam',
         icon: 'steam',
         color: '#50769d',
-        link: 'https://steamcommunity.com/id/cworld',
+        link: 'https://steamcommunity.com/profiles/76561199000686172/',
         text: 'games',
         api: 'steamgames/76561199021278120'
       }
@@ -200,10 +138,8 @@ const headings = [
 
   {/* gossips */}
   <h2 id='gossips'>Gossips</h2>
-  <Collapse title='Lorem ipsum'>
-    Lorem ipsum dolor sit amet, vidit suscipit at mei. Quem denique mea id. Usu ei regione indoctum
-    dissentiunt, cu meliore fuisset mei, vel quod voluptua ne. Ex dicat impedit mel, at eum oratio
-    possit voluptatum.
+  <Collapse title='miaomiao'>
+    喵喵喵喵喵喵
   </Collapse>
 
   {/* about-blog */}
@@ -212,18 +148,9 @@ const headings = [
   <Timeline
     events={[
       {
-        date: '2024-04-29',
+        date: '2025-08-05',
         content:
-          'Website refactored using <a href="https://astro.build/" target="_blank">Astro</a> and <a href="https://github.com/srleom/astro-theme-resume" target="_blank">Astro Theme Resume</a>'
-      },
-      {
-        date: '2024-07-26',
-        content:
-          'Website abstracted as a theme and published on <a href="https://github.com/cworld1/astro-theme-pure"target="_blank">Github</a>'
-      },
-      {
-        date: '2024-07-27',
-        content: 'Began writing website docs'
+          'Website constructed using <a href="https://github.com/cworld1/astro-theme-pure" target="_blank">Astro-theme-pure</a> as template.'
       }
     ]}
   />
