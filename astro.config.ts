@@ -25,7 +25,7 @@ import config from './src/site.config.ts'
 // https://astro.build/config
 export default defineConfig({
   // Top-Level Options
-  site: 'https://hjcheng0602.github.io/',
+  site: 'https://hjcheng0602.github.io',
   base: '/personalsite',
   trailingSlash: 'never',
 
