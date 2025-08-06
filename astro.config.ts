@@ -26,7 +26,7 @@ import config from './src/site.config.ts'
 export default defineConfig({
   // Top-Level Options
   site: 'https://hjcheng0602.github.io',
-  base: '/personalsite', // 这一行是正确的，请改回这个配置
+  base: '/', // 这一行是正确的，请改回这个配置
   trailingSlash: 'never',
   // Adapter
   // https://docs.astro.build/en/guides/deploy/
