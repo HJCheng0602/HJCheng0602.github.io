@@ -26,7 +26,7 @@ import config from './src/site.config.ts'
 export default defineConfig({
   // Top-Level Options
   site: 'https://hjcheng0602.github.io/personalsite',
-  base: '/',
+  base: '',
   trailingSlash: 'never',
 
   // Adapter
