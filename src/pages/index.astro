@@ -11,6 +11,7 @@ import Section from '@/components/home/Section.astro'
 import SkillLayout from '@/components/home/SkillLayout.astro'
 import avatar from '@/assets/headphoto.jpg'
 import config from '@/site-config'
+import collegepku from '@/assets/pku.png'
 
 const languages = ['C++/C', 'Python', 'Rust']
 const frontend = ['Qt', 'Astro']
@@ -121,7 +122,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
     subheading='Bachelor of Intelligence Science and Technology'
     date='August 2024 - now'
   >
-    <img src="/src/assets/pku.png" alt="Peking University Logo" class="w-20 h-auto rounded-full ml-4" />
+    <Image src={collegepku} alt="Peking University Logo" class="w-20 h-auto rounded-full ml-4" />
   </Card>
 </Section>
 
