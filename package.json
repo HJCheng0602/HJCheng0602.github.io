@@ -25,6 +25,7 @@
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.4.2",
     "@astrojs/vercel": "^8.1.4",
+    "@astrojs/vue": "^5.1.0",
     "@playform/compress": "^0.1.9",
     "@types/hast": "^3.0.4",
     "@unocss/preset-wind3": "^66.1.3",
