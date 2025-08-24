@@ -103,10 +103,11 @@ export default defineConfig({
     contentIntellisense: true
   },
   vite: {
-    resolve: {
-      alias: {
-        'vue': 'vue/dist/vue.esm-bundler.js',
-      },
-    },
+    plugins: [
+      //   visualizer({
+      //     emitFile: true,
+      //     filename: 'stats.html'
+      //   })
+    ]
   }
 })
