@@ -36,11 +36,11 @@ export const theme: ThemeUserConfig = {
   // Still in test
   head: [
     /* Telegram channel */
-    // {
-    //   tag: 'meta',
-    //   attrs: { name: 'telegram:channel', content: '@cworld0_cn' },
-    //   content: ''
-    // }
+    //  {
+    //    tag: 'meta',
+    //    attrs: { name: 'telegram:channel', content: '@cworld0_cn' },
+    //    content: ''
+    //  }
   ],
   customCss: [],
 
@@ -48,7 +48,6 @@ export const theme: ThemeUserConfig = {
   header: {
     menu: [
       { title: 'Blog', link: '/blog' },
-      { title: 'Docs', link: '/docs' },
       { title: 'Projects', link: '/projects' },
       { title: 'Links', link: '/links' },
       { title: 'About', link: '/about' }

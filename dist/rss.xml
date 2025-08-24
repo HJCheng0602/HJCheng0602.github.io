@@ -565,7 +565,7 @@ if i == (initial_winsize - 1) * kf_stride:
 &lt;p&gt;然后，我们再使用类似于&lt;strong&gt;DUSt3R&lt;/strong&gt;中的方法，将这些帧（尤其是关键帧）做出一个置信度最高的三维重建。从而得到某一个视频片段对应的点图$\hat{X}_{key}$。&lt;/p&gt;
 &lt;h3&gt;L2W网络&lt;/h3&gt;
 &lt;p&gt;这个模块接受I2P模块产生的$X_{key}$作为输入，因为其是一个在线处理方法，所以我们引入了缓冲集这一关键的组分。&lt;/p&gt;
-&lt;p&gt;首先，我们在已经处理完的关键帧点图中采用&lt;code&gt;reservoir strategy&lt;/code&gt;选取$B$个已经注册完的帧作为缓冲集（对于第一个帧这种特殊情况，我们采用了重复运行多次I2P获取足够多数量的初始帧作为缓冲集），然后，每当一个新的帧输入时，我们使用一个检索模块（由I2P中的decoder组成）在缓冲集中将特征的相似度进行匹配，我们然后选取匹配度最高的$K$个关键帧点图，然后将这$K$个关键帧点图$\hat{X}_{i}^{H \times W \times 3}，i = 1 , ..., K + 1$作为这个模块的输入。&lt;/p&gt;
+&lt;p&gt;首先，我们在已经处理完的关键帧点图中采用&lt;code&gt;reservoir strategy&lt;/code&gt;选取$B$个已经注册完的帧作为缓冲集（对于第一个帧这种特殊情况，我们采用了重复运行多次I2P获取足够多数量的初始帧作为缓冲集），然后，每当一个新的帧输入时，我们使用一个检索模块（由I2P中的decoder组成）在缓冲集中将特征的相似度进行匹配，我们然后选取匹配度最高的$K$个关键帧点图，然后将这$K$个关键帧点图 $\hat{X}_{i}^{H \times W \times 3},i = 1 , ..., K + 1$作为这个模块的输入。&lt;/p&gt;
 &lt;p&gt;如前图所示，我们将这$K + 1$个点图输入到我们的L2W模块的encoder $E_{pts}$ 中：
 $$
 \mathcal{P}&lt;em&gt;i^{(T\times d)}=E&lt;/em&gt;{pts}(\hat{X}_i^{(H\times W\times3)}),i=1,...,K+1.
@@ -608,4 +608,4 @@ $$&lt;/p&gt;
 &lt;p&gt;...&lt;/p&gt;
 &lt;p&gt;Above might be the main topics of content in the site.&lt;/p&gt;
 &lt;h3&gt;Additions&lt;/h3&gt;
-&lt;p&gt;The posts will be in Chinese and English randomly(maybe most time Chinese🤣).Please forgive my poor English.&lt;/p&gt;</content:encoded><h:img src="undefined"/><enclosure url="undefined"/></item></channel></rss>
+&lt;p&gt;The posts will be in Chinese and English randomly(maybe most time Chinese🤣).Please forgive my poor English.&lt;/p&gt;</content:encoded><h:img src="undefined"/><enclosure url="undefined"/></item><item><title>Mast3R都之后的发现</title><link>https://hjcheng0602.github.io/blog/mst3r/mast3r</link><guid isPermaLink="true">https://hjcheng0602.github.io/blog/mst3r/mast3r</guid><description>Markdown 是一种轻量级的「标记语言」。</description><pubDate>Wed, 26 Jul 2023 08:00:00 GMT</pubDate><content:encoded>&lt;p&gt;111&lt;/p&gt;</content:encoded><h:img src="undefined"/><enclosure url="undefined"/></item></channel></rss>

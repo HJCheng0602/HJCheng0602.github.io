@@ -116,14 +116,16 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
     </Section> */
       }
 <Section title='Education'>
-  <Card
-    as='a'
-    heading='Peking University'
-    subheading='Bachelor of Intelligence Science and Technology'
-    date='August 2024 - now'
-  >
+<Card as='a' href="https://www.pku.edu.cn/">
+  <div class="flex items-center justify-between">
+    <div class="flex-grow">
+      <h3 class="text-xl font-bold">Peking University</h3>
+      <p class="text-lg">Bachelor of Intelligence Science and Technology</p>
+      <p class="text-sm text-gray-500">August 2024 - now</p>
+    </div>
     <Image src={collegepku} alt="Peking University Logo" class="w-20 h-auto rounded-full ml-4" />
-  </Card>
+  </div>
+</Card>
 </Section>
 
       <!-- <Section title='Website List'>
@@ -171,6 +173,6 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
         <SkillLayout title='Backend' skills={backend} />
       </Section>
     </div>
-    <Quote class='mt-12' />
+    <!-- <Quote class='mt-12' /> -->
   </main>
 </PageLayout>
