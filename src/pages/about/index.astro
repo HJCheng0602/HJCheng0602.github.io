@@ -185,4 +185,26 @@ const headings = [
     </li>
   </ul>
   <Comment slot='bottom' />
+
+
+  <head>
+  <!-- ... -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/@waline/client@v3/dist/waline.css"
+  />
+  <!-- ... -->
+</head>
+<body>
+  <!-- ... -->
+  <div id="waline"></div>
+  <script type="module">
+    import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+    init({
+      el: '#waline',
+      serverURL: 'https://new-cot843nsz-hjcheng0602s-projects.vercel.app/',
+    });
+  </script>
+</body>
 </PageLayout>
