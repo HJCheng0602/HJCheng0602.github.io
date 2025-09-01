@@ -38,6 +38,9 @@ jobs:
       - name: Build Astro site
         run: pnpm build
 
+      - name: Disable Jekyll build
+        run: touch dist/.nojekyll
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
