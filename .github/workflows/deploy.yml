@@ -1,19 +1,15 @@
 name: Deploy Astro site to GitHub Pages
 
 on:
-  # 在推送到 `main` 分支时自动触发
   push:
     branches: [ "main" ]
-  # 允许手动触发
   workflow_dispatch:
 
-# 设置权限
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 定义工作任务
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -25,28 +21,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22  # 推荐使用 LTS 版本，如 20 或 22
+          node-version: 22
           cache: 'pnpm'
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 10.14.0 # 使用一个稳定的 pnpm 版本
-          run_install: true # 暂时不自动运行 install
-
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - name: Set up cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
+          version: 10.14.0 # 确保这个版本与你本地使用的版本一致
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -55,7 +36,7 @@ jobs:
         run: pnpm build
 
       - name: Disable Jekyll build
-        run: touch dist/.nojekyll
+        run: touch dist/.nojekll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
