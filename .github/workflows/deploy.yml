@@ -32,7 +32,7 @@ jobs:
         uses: pnpm/action-setup@v3
         with:
           version: 10.14.0 # 使用一个稳定的 pnpm 版本
-          run_install: false # 暂时不自动运行 install
+          run_install: true # 暂时不自动运行 install
 
       - name: Get pnpm store directory
         id: pnpm-cache
