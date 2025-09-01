@@ -1,39 +1,55 @@
-name: Deploy to GitHub Pages
+name: Deploy Astro site to GitHub Pages
 
 on:
-  # 每次推送到 `main` 分支时触发这个“工作流程”
-  # 如果你使用了别的分支名，请按需将 `main` 替换成你的分支名
+  # 在推送到 `main` 分支时自动触发
   push:
-    branches: [ main ]
-  # 允许你在 GitHub 上的 Actions 标签中手动触发此“工作流程”
+    branches: [ "main" ]
+  # 允许手动触发
   workflow_dispatch:
 
-# 允许 job 克隆 repo 并创建一个 page deployment
+# 设置权限
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# 定义工作任务
 jobs:
-  build:
+  build_and_deploy:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 10.14.0 # 或者你本地使用的 pnpm 版本
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22.18.0
+          node-version: 22  # 推荐使用 LTS 版本，如 20 或 22
           cache: 'pnpm'
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10.14.0 # 使用一个稳定的 pnpm 版本
+          run_install: false # 暂时不自动运行 install
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Set up cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile # 显式使用 --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Build Astro site
         run: pnpm build
@@ -44,13 +60,14 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist # 确保这个路径正确
+          path: ./dist
+
   deploy:
-    needs: build
-    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build_and_deploy
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
