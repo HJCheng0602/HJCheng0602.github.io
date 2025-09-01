@@ -18,25 +18,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'pnpm'
-
-      - name: Setup pnpm
+      - name: Setup Node.js and pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 10.14.0 # 确保这个版本与你本地使用的版本一致
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+          version: 10.14.0 # 或者你本地使用的任何 pnpm 版本
+          run_install: true # 这一步会同时安装依赖
 
       - name: Build Astro site
         run: pnpm build
 
       - name: Disable Jekyll build
-        run: touch dist/.nojekll
+        run: touch dist/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
