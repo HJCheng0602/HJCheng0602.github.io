@@ -104,10 +104,14 @@ export default defineConfig({
   },
   vite: {
     plugins: [
-      //   visualizer({
-      //     emitFile: true,
-      //     filename: 'stats.html'
-      //   })
-    ]
+            vue({
+                // 确保生产模式下禁用水合调试
+                template: {
+                    compilerOptions: {
+                        isCustomElement: tag => tag === 'comment-component'
+                    }
+                }
+            })
+        ]
   }
 })
