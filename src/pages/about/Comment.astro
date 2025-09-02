@@ -10,7 +10,7 @@ const { class: className } = Astro.props
 
 {
   config.integ.waline.enable && (
-    <comment-component client:only>
+    <comment-component >
       <div  id='waline' class={cn('not-prose', className)}>
         Comment seems to stuck. Try to refresh?✨
       </div>
