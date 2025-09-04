@@ -22,6 +22,18 @@ const allPosts = await getBlogCollection()
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 ---
 
+<style>
+  .globe-container {
+    /* 核心代码 */
+    width: 100%;
+    max-width: 200px;
+    aspect-ratio: 1 / 1;
+
+    /* 让地球仪靠右对齐 */
+    margin-inline-start: auto;
+  }
+</style>
+
 <PageLayout meta={{ title: 'Home' }} highlightColor='#659EB9'>
   <main class='flex w-full flex-col items-center'>
     <section class='animate mb-10 flex flex-col items-center gap-y-7' id='content-header'>
@@ -174,9 +186,10 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
       </Section>
       
     </div>
-      <div class="globe-container">
-  <script is:inline defer type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=cYvqvdxF-fwzhLaYecxGFJXA-VSg7dt8aSIZRp5wfOc"></script>
-</div>
+      
     <!-- <Quote class='mt-12' /> -->
   </main>
+  <div class="globe-container">
+  <script is:inline defer type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=cYvqvdxF-fwzhLaYecxGFJXA-VSg7dt8aSIZRp5wfOc"></script>
+</div>
 </PageLayout>
