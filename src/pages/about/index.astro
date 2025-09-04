@@ -14,7 +14,21 @@ const headings = [
 ]
 ---
 
+<style>
+  .globe-container {
+    /* 核心代码 */
+    width: 100%;             /* 宽度占满其所在的父容器 */
+    max-width: 300px;        /* 最大宽度不超过300像素，防止在电脑屏幕上过大 */
+    aspect-ratio: 1 / 1;     /* 保持宽高比为1:1（正方形），CSS会自动计算高度 */
+
+    /* (可选) 附加样式 */
+    margin-inline: auto;     /* 让地球仪水平居中 */
+  }
+</style>
+
+
 <PageLayout title='About' {headings} info='/about'>
+  
   <p>Student / Developer</p>
   <p>
     I am an undergraduate student majoring in Intelligence Science and Technology at Peking University. I'm currently in the early stages of exploring the 3R series (3D Reconstruction, Rendering, and Recognition). My main focus is on learning the fundamental theories and classic algorithms in this field. 
@@ -159,7 +173,7 @@ const headings = [
     technical support provided by the following excellent projects/service providers:
   </p>
   <ul>
-    <li>Domain: <a href='#' target='_blank'>Vercel</a></li>
+    <li>Domain: <a href='#' target='_blank'>Aliyun</a></li>
     <li>
       Framework & Theme: <a href='https://astro.build/' target='_blank'>Astro</a> + <a
         href='https://github.com/cworld1/astro-theme-pure'
@@ -184,5 +198,9 @@ const headings = [
       >
     </li>
   </ul>
+
+  <div class="globe-container">
+  <script is:inline defer type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=cYvqvdxF-fwzhLaYecxGFJXA-VSg7dt8aSIZRp5wfOc"></script>
+</div>
   <Comment slot='bottom' />
 </PageLayout>

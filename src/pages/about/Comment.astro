@@ -7,6 +7,17 @@ import { cn } from 'astro-pure/utils'
 
 const { class: className } = Astro.props
 ---
+<style>
+  .globe-container {
+    /* 核心代码 */
+    width: 100%;             /* 宽度占满其所在的父容器 */
+    max-width: 300px;        /* 最大宽度不超过300像素，防止在电脑屏幕上过大 */
+    aspect-ratio: 1 / 1;     /* 保持宽高比为1:1（正方形），CSS会自动计算高度 */
+
+    /* (可选) 附加样式 */
+    margin-inline: auto;     /* 让地球仪水平居中 */
+  }
+</style>
 
 {
   config.integ.waline.enable && (
