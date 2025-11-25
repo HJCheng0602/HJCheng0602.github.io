@@ -35,7 +35,7 @@ export default defineConfig({
   // output: 'server',
   // 2. Vercel (static) - 临时启用用于预览
   // adapter: vercelStatic(),
-  output: 'static',
+  output: 'server',
   // 3. Local (standalone)
   // adapter: node({ mode: 'standalone' }),
   // output: 'server',
