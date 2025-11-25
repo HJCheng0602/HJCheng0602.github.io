@@ -27,7 +27,7 @@ export default defineConfig({
   // Top-Level Options
   site: 'https://www.hjcheng0602.cn/',
   base: '/', 
-  trailingSlash: 'always',
+  trailingSlash: 'never',
   // Adapter
   // https://docs.astro.build/en/guides/deploy/
   // 1. Vercel (serverless)
