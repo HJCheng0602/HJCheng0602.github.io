@@ -15,3 +15,15 @@ heroImage: { src: './cover.png', color: '#B4C6DA' }
 本文的初衷是一个长期更新的3D recon系列论文阅读，之前其实已经发过了一些该领域的论文的精读了，但是显然精读必然是不可长期持续的。因此，我想以本文——一个系列的形式记录对大多数论文的浅要阅读，当然如果有特别重要的论文，我也会单开一篇文章进行精读的。
 
 本文的cover image是一个词云，记录了本文包含的工作的名称，希望它能不断地更新，成为一个3D recon领域的词云图谱。
+
+import { GithubCard } from 'astro-pure/advanced'
+
+## CUT3R
+<GithubCard repo='CUT3R/CUT3R' />
+CUT3R的输入是视频序列，但是也可以unordered（据作者所言训练的时候是无序训练的，但是推理的时候推理的时候是dataloader先计算重合率来进行初步排序。），使用一个feed forward网络预测camera parameters和点云
+
+然后是一个recurrent模型，每一帧输入的时候添加一个pose token然后经过encoder和decoder，之后使用交叉注意力更新$s_t$ 和 $F_t$，之后再使用不同head来从$s_t$和$F_t$中提取output。
+
+显然这样缺少修正，对于长序列容易造成偏移。但是作者似乎也提到了一个revisit机制，在输入结束之后拿着全局的$s$来做之前的预测，在7scene上的acc和comp是有改善的，但是NRGBD不怎么明显。
+
+此外，作者也说因为数据集质量的原因，采用的head即使已经有一个pose head和local points head，也仍然要加入一个world ptshead（缺乏高质量的数据集）。
