@@ -104,3 +104,29 @@ DA3的主要创新点在于：
 
 
 <GithubCard repo='InternRobotics/AnySplat' />
+
+
+## RayZer
+
+![rayzer](./RayZer.png)
+
+令人耳目一新的自监督模型，训练过程只需要图片而不需要gt的pose和内参，训练过程大概是这样的：
+
+- 首先输入$K$张图片，将其分为$L_a$ 和$L_b$两个集合。
+    
+- 然后模型通过Camera Estimator模块，预测出pose和intrinsics。
+    
+- 之后对于$L_a$ ，模型根据其对应的预测出来的$R_a$ 和本身的图片输入，生成场景的token$z$.
+    
+- 然后对于$L_b$，模型选择通过$z$和$R_b$ $L_b$ 预测出$\hat{L}_b$ 然后监督$\hat{L}_b$ 与$L_b$ 之间的损失，然后更新所有的值。
+    
+
+因此，推理时的大致步骤大概就是先把场景的已知几张图片输入得到$z$ ，之后针对一个特定的pose，计算一个光线图，之后输入到rendering decoder里得到在这个特定的pose下的rgb图片。
+
+感觉和nerf好像，都是一个隐式的表达整个场景，不过不同的是RayZer是一个更直接的模型，图里的三个模块每个都是8层naive transformer，loss仅由最后的rgbloss 和LPIPS loss决定，感觉挺聪明的。不过感觉rendering部分采用的表现形式——类raymap形式似乎真的挺好用的。
+
+另外，值得注意的是第一部分，在预测pose和intrinsics时，直接选取了中间帧作为参考帧，使得模型能跨越更长的距离。此外，如果说我们在第一部分就引入$z$ ，能否实现定位功能？不过作者似乎做了消融实验，发现在训练的时候，从图像特征中提取几何关系比从一个未成形的$z$ 中提取容易得多。但是我觉着可以在rendering部分再添加一个decoder用于定位。
+
+另外，这个模型完全打败了LVSM（一个有监督的模型），感觉是一个非常惊艳的工作，看项目主页的demo视频感觉真的很不错啊。
+
+<GithubCard repo='hwjiang1510/RayZer' />
