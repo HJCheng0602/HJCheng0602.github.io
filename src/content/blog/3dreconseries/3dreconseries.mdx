@@ -18,6 +18,9 @@ heroImage: { src: './cover.png', color: '#B4C6DA' }
 
 import { GithubCard } from 'astro-pure/advanced'
 
+import {Spoiler} from 'astro-pure/user'
+
+
 ## CUT3R
 
 CUT3R的输入是视频序列，但是也可以unordered（据作者所言训练的时候是无序训练的，但是推理的时候推理的时候是dataloader先计算重合率来进行初步排序。），使用一个feed forward网络预测camera parameters和点云。
@@ -130,3 +133,41 @@ DA3的主要创新点在于：
 另外，这个模型完全打败了LVSM（一个有监督的模型），感觉是一个非常惊艳的工作，看项目主页的demo视频感觉真的很不错啊。
 
 <GithubCard repo='hwjiang1510/RayZer' />
+
+## Spa3R
+
+![spa3r](./Spa3R.png)
+
+首先是一个自监督的模型，模型的backbone设计的有点复杂：
+
+我们给出一个场景的views，然后将views分为context view和target view，首先将所有views通过一个改造过的vggt（似乎是只引入了head之前的部分），改造内容是在context Views的AA层那里把 Target Views给mask掉，然后得到Context Views的feature $F_c$ 和Target Views的camera token和Feature $F_t$ ，之后，数据流向两条路径：
+
+- Context views ：$F_c$ 与一组可学习的$q$ 通往Encoder，然后得到$z$ 作为空间的隐式表征。
+    
+- Target views ：camera tokens通过camera head生成camera embeds $r$ ，然后与$z$ 一起输入到Decoder里生成对Target views的预测过的feature $\hat{F}_t$ ，然后将得到的预测feature与$F_t$ 进行监督得到loss。
+    
+推理的阶段我们就只看Context Views得到的$z$ ，将$z$与qwen2.5 vl 得到的$F_V$ 输入到一个**Adapter**里，然后将这个adapter和text prompt输入到llm里得到最终结果。
+
+首先，肉眼可见这项工作把大量的其他工作缝合到了一起，Target View阶段用了DINOv3和VGGT，$z$ 的后续处理用到了qwen2.5 vl，但是这篇文章叫Spa3R啊，Dust3R被放到哪了呢？然后可训练的内容只有Encoder和Decoder，仅6层Transformer，而且通过两个$F_t$作为loss进行训练，训练结束之后即丢弃Decoder，保留训好的Encoder和q。然后后续还有一个针对Adapter的一个微调，让其学到怎么生成一个合理的融合$F_{input}$ 。
+
+模型做了几个消融实验：
+
+1. Target Views阶段作者证明了同时使用VGGT和DINO会更好（包含语义和空间信息），这是一个比较显然的结论。
+    
+2. 提取出一个场景$z$ 表征是一个更好的手段，相对于现有的几个类似于VG-LLM简单把所有特征输入到llm里效果更好（但是只提升了3个点，感觉有点低于预期，考虑到第二阶段训练只进行了1个epoch，有没有可能是训练量不够？我也是第一次读VLM相关的文章（），不过看具体的比分，Multi-Choice涨分了，而Numerical几乎没变，确实是make sense的）。
+    
+3. pose embedding的影响，PRoPE比plucker更好。
+    
+4. Mask Ratio，这也是一个比较显然的消融实验。
+    
+5. Adapter使用提高了点数，比较make sense。
+    
+模型只在ScanNet和ScanNetpp上进行了pre train，使用了8张5090进行训练，在VSI-Bench上达到了58.6的水平，超过了之前的大部分model，查看现在的VSI-Bench Leaderboard，其性能也是处于前列的（不过论文里的表格好像有些数据有点不对？可能有更新吧）。算是为领域开了一个新坑（），自监督看上去也不错（）。
+
+
+
+
+<Spoiler> 看上去这篇文章正在投CVPR，是笔者写阅读笔记的两天前才登上了arxiv，也不知道中没中，不过感觉论文书写的比较emmm水，方法倒是很有趣 </Spoiler>
+
+
+<GithubCard repo='hustvl/Spa3R' />
