@@ -39,7 +39,7 @@ head:
         publisher_logo:
         image:
     meta:
-        - ''
+        - 'rel=stylesheet;href=/css/custom.css'
     rss:
 navbar:
     menu:
@@ -47,6 +47,7 @@ navbar:
         Blog: /archives
         Tags: /tags
         About: /about
+
     links:
         GitHub:
             icon: fab fa-github
