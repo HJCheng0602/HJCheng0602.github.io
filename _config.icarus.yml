@@ -76,9 +76,6 @@ comment:
     type: waline
     server_url: https://new-3hrq0vv90-hjcheng0602s-projects.vercel.app/
 donates: []
-share:
-    type: sharethis
-    install_url: ''
 sidebar:
     left:
         sticky: true
@@ -153,5 +150,5 @@ plugins:
         security:
 providers:
     cdn: jsdelivr
-    fontcdn: google
+    fontcdn: 'https://fonts.loli.net/css2?family={fontname}'
     iconcdn: fontawesome

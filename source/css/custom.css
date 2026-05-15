@@ -1,5 +1,6 @@
 /* ── Google Fonts ─────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+/* fonts.loli.net = Google Fonts mirror, accessible in mainland China */
+@import url('https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap');
 
 /* ── Body & Article: Noto Serif SC for Chinese, elegant rendering ─────── */
 body,
