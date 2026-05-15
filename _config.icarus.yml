@@ -150,5 +150,5 @@ plugins:
         security:
 providers:
     cdn: jsdelivr
-    fontcdn: 'https://fonts.loli.net/css2?family={fontname}'
+    fontcdn: google
     iconcdn: fontawesome

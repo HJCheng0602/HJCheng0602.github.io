@@ -1,75 +1,67 @@
-/* ── Google Fonts ─────────────────────────────────────────────────────── */
-/* fonts.loli.net = Google Fonts mirror, accessible in mainland China */
-@import url('https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+/* ── Fonts via loli.net (Google Fonts CN mirror) ─────────────────────── */
+@import url('https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap');
 
-/* ── Body & Article: Noto Serif SC for Chinese, elegant rendering ─────── */
-body,
-.content,
-.article,
-.article-body,
-.article-meta,
-p, li, blockquote, td, th {
-  font-family: 'Noto Serif SC', 'Source Han Serif SC', 'STSong', Georgia, serif;
-  font-weight: 400;
+/* ── Global font override: must come after Icarus CSS ───────────────────
+   Use !important only on font-family so Noto Serif SC always wins over
+   Icarus's Lato, even if Lato fails to load.
+   ─────────────────────────────────────────────────────────────────────── */
+html, body {
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
-/* ── Headings: slightly lighter weight for elegance ──────────────────── */
+/* ── Body text ────────────────────────────────────────────────────────── */
+p, li, blockquote, td, th,
+.content, .article-body, .article-meta {
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif !important;
+}
+
+/* ── Headings ────────────────────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6,
-.article-title,
-.card-title {
-  font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif;
+.article-title, .card-title, .widget-title {
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif !important;
   font-weight: 500;
   letter-spacing: 0.01em;
 }
 
-/* ── Navbar & UI labels: clean sans-serif ────────────────────────────── */
-.navbar,
-.navbar-item,
-.navbar-link,
-.navbar-dropdown a,
-.widget .menu-label,
-.widget .widget-title,
-.timeline-item .heading,
-.tag, .button, .tabs, .footer,
-.article-meta time,
-.article-meta a {
-  font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+/* ── UI chrome: navbar, footer, tags — use clean sans-serif ──────────── */
+.navbar, .navbar-item, .navbar-link, .navbar-burger,
+.navbar-dropdown a, .navbar-dropdown .navbar-item,
+.tag, .tags, .button, .tabs li a,
+.footer, .footer a,
+.article-meta, .article-meta time, .article-meta a,
+.widget, .widget-title, .menu-label, .menu-list a,
+.pagination, .breadcrumb {
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif !important;
   font-weight: 400;
 }
 
-/* ── Code: JetBrains Mono, clean and readable ────────────────────────── */
-code, pre, kbd,
-.highlight, .highlight *,
+/* ── Code blocks ─────────────────────────────────────────────────────── */
+code, pre, kbd, samp,
+.highlight, .highlight span,
 .code-block {
   font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace !important;
-  font-size: 0.88em;
-  font-variant-ligatures: common-ligatures;
+  font-size: 0.875em;
 }
 
-/* Inline code: slightly tinted */
-.content code:not([class]) {
+/* Inline code */
+.content p code,
+.content li code {
   background: #f5f2f0;
   border-radius: 3px;
   padding: 0.1em 0.35em;
-  font-size: 0.87em;
-  color: #c7254e;
+  color: #c0392b;
 }
 
-/* ── Reading comfort tweaks ──────────────────────────────────────────── */
-.article-body p,
-.content p {
+/* ── Reading comfort ─────────────────────────────────────────────────── */
+.article-body p, .content p {
   line-height: 1.9;
   letter-spacing: 0.02em;
 }
 
-.article-body {
-  font-size: 1.0rem;
-}
-
-/* MathJax: match body font size */
+/* MathJax */
 .MathJax, .MJX-TEX {
   font-size: 1.05em !important;
 }
