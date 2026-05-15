@@ -39,7 +39,7 @@ head:
         publisher_logo:
         image:
     meta:
-        - 'rel=stylesheet;href=/css/custom.css'
+        - ''
     rss:
 navbar:
     menu:
