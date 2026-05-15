@@ -70,3 +70,126 @@ code, pre, kbd,
 .MathJax {
   font-size: 1.05em !important;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Waline comment widget — override CSS variables to match page style
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Waline CSS custom properties */
+#comments .v,
+.v[data-class="v"] {
+  --waline-font-size: 0.95rem;
+  --waline-font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif;
+  --waline-color: #363636;
+  --waline-bgcolor: #ffffff;
+  --waline-bgcolor-light: #f8f8f8;
+  --waline-bgcolor-hover: #f5f5f5;
+  --waline-border-color: #dbdbdb;
+  --waline-disable-bgcolor: #f5f5f5;
+  --waline-disable-color: #b5b5b5;
+  --waline-theme-color: #3273dc;
+  --waline-active-color: #3273dc;
+  --waline-avatar-radius: 50%;
+  --waline-avatar-size: 2.5rem;
+  --waline-badge-color: #3273dc;
+  --waline-info-bgcolor: #f5f5f5;
+  --waline-info-color: #7a7a7a;
+  --waline-bq-color: #f0f0f0;
+  --waline-border: 1px solid var(--waline-border-color);
+}
+
+/* Font override for all Waline text elements */
+.v,
+.v *,
+.v input,
+.v textarea,
+.v button,
+.v .vlist .vcard .vhead,
+.v .vlist .vcard .vcontent,
+.v .vlist .vcard .vfooter,
+.v .veditor,
+.v .vpanel,
+.v .vcount,
+.v .vnav {
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif !important;
+}
+
+/* Comment section card header */
+#comments .card-content h3.title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #363636;
+  border-bottom: 1px solid #dbdbdb;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Input and textarea: match page style */
+.v .veditor,
+.v input,
+.v textarea {
+  border-radius: 4px !important;
+  border-color: #dbdbdb !important;
+  font-size: 0.95rem !important;
+  padding: 0.6em 0.8em !important;
+  line-height: 1.7 !important;
+}
+
+.v .veditor:focus,
+.v input:focus,
+.v textarea:focus {
+  border-color: #3273dc !important;
+  box-shadow: 0 0 0 0.125em rgba(50, 115, 220, 0.25) !important;
+  outline: none !important;
+}
+
+/* Submit button */
+.v .vbtn {
+  background-color: #3273dc !important;
+  border-color: #3273dc !important;
+  color: #fff !important;
+  border-radius: 4px !important;
+  font-size: 0.9rem !important;
+  padding: 0.4em 1em !important;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.v .vbtn:hover {
+  background-color: #2366d1 !important;
+}
+
+/* Comment list item */
+.v .vlist .vcard {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 1rem 0;
+}
+
+.v .vlist .vcard:last-child {
+  border-bottom: none;
+}
+
+/* Avatar */
+.v .vlist .vcard .vhead .vavatar img {
+  border-radius: 50%;
+  border: 2px solid #f0f0f0;
+}
+
+/* Comment content */
+.v .vlist .vcard .vcontent {
+  line-height: 1.8;
+  color: #4a4a4a;
+  font-size: 0.95rem;
+}
+
+/* Reply and like buttons */
+.v .vlist .vcard .vfooter .vaction {
+  font-size: 0.82rem;
+  color: #7a7a7a;
+}
+
+/* Comment count */
+.v .vcount {
+  font-size: 0.9rem;
+  color: #7a7a7a;
+}
