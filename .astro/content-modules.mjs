@@ -1,0 +1,22 @@
+
+export default new Map([
+["src/content/blog/celebrate.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fcelebrate.mdx&astroContentModuleFlag=true")],
+["src/content/blog/3dreconseries/3dreconseries.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2F3dreconseries%2F3dreconseries.mdx&astroContentModuleFlag=true")],
+["src/content/blog/Fast3R/Fast3R.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2FFast3R%2FFast3R.mdx&astroContentModuleFlag=true")],
+["src/content/blog/HPCGamesABC/HPCgamesabc.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2FHPCGamesABC%2FHPCgamesabc.mdx&astroContentModuleFlag=true")],
+["src/content/blog/HPCGamesDE/HPCgamesde.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2FHPCGamesDE%2FHPCgamesde.mdx&astroContentModuleFlag=true")],
+["src/content/blog/SF3D/SF3d.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2FSF3D%2FSF3d.mdx&astroContentModuleFlag=true")],
+["src/content/blog/SLAM3R/SLAM3R.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2FSLAM3R%2FSLAM3R.mdx&astroContentModuleFlag=true")],
+["src/content/blog/SLAM3R_online edit/SLAM3R_online_contribute.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2FSLAM3R_online+edit%2FSLAM3R_online_contribute.mdx&astroContentModuleFlag=true")],
+["src/content/blog/TensorParallel/TP.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2FTensorParallel%2FTP.mdx&astroContentModuleFlag=true")],
+["src/content/blog/VGGT/vggt.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2FVGGT%2Fvggt.mdx&astroContentModuleFlag=true")],
+["src/content/blog/ViT_transformer/vit.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2FViT_transformer%2Fvit.mdx&astroContentModuleFlag=true")],
+["src/content/blog/bloc3r/bloc3r.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fbloc3r%2Fbloc3r.mdx&astroContentModuleFlag=true")],
+["src/content/blog/improve-concentration/index.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fimprove-concentration%2Findex.mdx&astroContentModuleFlag=true")],
+["src/content/blog/mst3r/Mast3R.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fmst3r%2FMast3R.mdx&astroContentModuleFlag=true")],
+["src/content/blog/nanopd/nanoPD.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fnanopd%2FnanoPD.mdx&astroContentModuleFlag=true")],
+["src/content/blog/slam_former/slam_former.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fslam_former%2Fslam_former.mdx&astroContentModuleFlag=true")],
+["src/content/blog/transformer/transformer.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Ftransformer%2Ftransformer.mdx&astroContentModuleFlag=true")],
+["src/content/blog/waline_set/waline.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fwaline_set%2Fwaline.mdx&astroContentModuleFlag=true")],
+["src/content/blog/vggt_new/vggt.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fvggt_new%2Fvggt.mdx&astroContentModuleFlag=true")]]);
+		

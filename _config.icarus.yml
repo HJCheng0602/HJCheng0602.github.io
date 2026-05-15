@@ -1,0 +1,156 @@
+version: 5.1.0
+variant: default
+logo:
+    text: Two and One
+head:
+    favicon: /img/favicon.ico
+    manifest:
+        name:
+        short_name:
+        start_url:
+        theme_color:
+        background_color:
+        display: standalone
+        icons:
+            -
+                src: ''
+                sizes: ''
+                type:
+    open_graph:
+        title:
+        type: blog
+        url:
+        image:
+        site_name:
+        author: Han Jincheng
+        description:
+        twitter_card:
+        twitter_id: HJCheng0602
+        twitter_site:
+        google_plus:
+        fb_admins:
+        fb_app_id:
+    structured_data:
+        title:
+        description:
+        url:
+        author: Han Jincheng
+        publisher:
+        publisher_logo:
+        image:
+    meta:
+        - ''
+    rss:
+navbar:
+    menu:
+        Home: /
+        Blog: /archives
+        Tags: /tags
+        About: /about
+    links:
+        GitHub:
+            icon: fab fa-github
+            url: https://github.com/HJCheng0602
+        X:
+            icon: fab fa-x-twitter
+            url: https://x.com/HJCheng0602
+footer:
+    copyright: © 2024-2026 Han Jincheng
+    links:
+        GitHub:
+            icon: fab fa-github
+            url: https://github.com/HJCheng0602
+article:
+    highlight:
+        theme: atom-one-light
+        clipboard: true
+        fold: unfolded
+    readtime: true
+    update_time: true
+    licenses:
+search:
+    type: insight
+    index_pages: true
+comment:
+    type: waline
+    server_url: https://new-3hrq0vv90-hjcheng0602s-projects.vercel.app/
+donates: []
+share:
+    type: sharethis
+    install_url: ''
+sidebar:
+    left:
+        sticky: true
+    right:
+        sticky: true
+widgets:
+    -
+        position: left
+        type: profile
+        author: Han Jincheng
+        author_title: PKU · Intelligence Science & Technology
+        location: Beijing, China
+        avatar: /img/avatar.jpg
+        avatar_rounded: true
+        gravatar:
+        follow_link: https://github.com/HJCheng0602
+        social_links:
+            GitHub:
+                icon: fab fa-github
+                url: https://github.com/HJCheng0602
+            Zhihu:
+                icon: fab fa-zhihu
+                url: https://www.zhihu.com/people/42-3-38-8-46
+            X:
+                icon: fab fa-x-twitter
+                url: https://x.com/HJCheng0602
+    -
+        position: left
+        type: toc
+        index: true
+        collapsed: true
+        depth: 3
+    -
+        position: right
+        type: recent_posts
+    -
+        position: right
+        type: archives
+    -
+        position: right
+        type: tags
+        order_by: '-length'
+        amount: 25
+        show_count: true
+plugins:
+    animejs: false
+    back_to_top: true
+    baidu_analytics:
+        tracking_id:
+    bing_webmaster:
+        tracking_id: 7F937E121EE219657A073E5E99C17078
+    busuanzi: false
+    cnzz:
+        id:
+        web_id:
+    cookie_consent:
+        type: info
+        theme: edgeless
+        static: false
+        position: bottom-left
+        policyLink: https://www.cookiesandyou.com/
+    gallery: false
+    google_analytics:
+        tracking_id:
+    katex: false
+    mathjax: true
+    outdated_browser: false
+    pjax: false
+    progressbar: true
+    statcounter:
+        project:
+        security:
+providers:
+    cdn: jsdelivr
+    fontcdn: google
+    iconcdn: fontawesome

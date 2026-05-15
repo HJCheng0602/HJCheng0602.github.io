@@ -1,0 +1,66 @@
+title: Two and One
+subtitle: learn like a kid.
+description: >-
+  Personal blog of Han Jincheng — PKU student exploring 3D Reconstruction, ML
+  Systems, and more.
+keywords: 3D reconstruction, machine learning, deep learning, PKU
+author: Han Jincheng
+language: en
+timezone: Asia/Shanghai
+url: https://hjcheng0602.github.io
+permalink: /blog/:title/
+permalink_defaults: null
+pretty_urls:
+  trailing_index: true
+  trailing_html: true
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+skip_render: null
+new_post_name: ':title.md'
+default_layout: post
+titlecase: false
+external_link:
+  enable: true
+  field: site
+  exclude: ''
+filename_case: 0
+render_drafts: false
+post_asset_folder: true
+relative_link: false
+future: true
+syntax_highlighter: highlight.js
+highlight:
+  line_number: true
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: false
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: '-date'
+default_category: blog
+category_map: null
+tag_map: null
+date_format: MMM DD, YYYY
+time_format: HH:mm:ss
+updated_option: date
+per_page: 10
+pagination_dir: page
+theme: icarus
+search:
+  path: search.xml
+  field: post
+  content: true
+wordcount:
+  enable: true
+  postWordCount: true
+  min2read: true
+  totalCount: false
+  awl: 4
+  wpm: 275
+deploy:
+  type: ''

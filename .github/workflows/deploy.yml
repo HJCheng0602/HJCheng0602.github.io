@@ -1,4 +1,4 @@
-name: Deploy Astro site to GitHub Pages
+name: Deploy Hexo site to GitHub Pages
 
 on:
   push:
@@ -13,34 +13,33 @@ permissions:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js and pnpm
-        uses: pnpm/action-setup@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          version: 10.14.0 # 或者你本地使用的任何 pnpm 版本
-          run_install: true # 这一步会同时安装依赖
+          node-version: '20'
 
-      - name: Build Astro site
-        run: pnpm build
+      - name: Install dependencies
+        run: npm install
 
-      - name: Disable Jekyll build
-        run: touch dist/.nojekyll
+      - name: Build Hexo site
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: public
 
   deploy:
+    needs: build_and_deploy
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build_and_deploy
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
