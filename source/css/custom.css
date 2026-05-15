@@ -1,67 +1,62 @@
-/* ── Fonts via loli.net (Google Fonts CN mirror) ─────────────────────── */
-@import url('https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap');
+/* Fonts loaded via <link> in head (see _config.icarus.yml).
+   This file only handles overrides and comfort tweaks. */
 
-/* ── Global font override: must come after Icarus CSS ───────────────────
-   Use !important only on font-family so Noto Serif SC always wins over
-   Icarus's Lato, even if Lato fails to load.
-   ─────────────────────────────────────────────────────────────────────── */
+/* ── Global: Noto Serif SC for everything ────────────────────────────── */
 html, body {
   font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
 
-/* ── Body text ────────────────────────────────────────────────────────── */
-p, li, blockquote, td, th,
-.content, .article-body, .article-meta {
+/* ── Article body content (.content is Icarus/Bulma's class) ─────────── */
+.content,
+.content p,
+.content li,
+.content blockquote,
+.content td,
+.content th {
   font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif !important;
+  line-height: 1.9;
 }
 
 /* ── Headings ────────────────────────────────────────────────────────── */
-h1, h2, h3, h4, h5, h6,
-.article-title, .card-title, .widget-title {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif !important;
   font-weight: 500;
-  letter-spacing: 0.01em;
 }
 
-/* ── UI chrome: navbar, footer, tags — use clean sans-serif ──────────── */
-.navbar, .navbar-item, .navbar-link, .navbar-burger,
-.navbar-dropdown a, .navbar-dropdown .navbar-item,
-.tag, .tags, .button, .tabs li a,
-.footer, .footer a,
-.article-meta, .article-meta time, .article-meta a,
-.widget, .widget-title, .menu-label, .menu-list a,
-.pagination, .breadcrumb {
+/* ── UI chrome: navbar, sidebar, tags, footer ────────────────────────── */
+.navbar,
+.navbar-item,
+.navbar-link,
+.footer,
+.tag,
+.button,
+.menu-label,
+.menu-list a,
+.card-header-title,
+.widget-title,
+.article-meta {
   font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif !important;
-  font-weight: 400;
 }
 
-/* ── Code blocks ─────────────────────────────────────────────────────── */
-code, pre, kbd, samp,
-.highlight, .highlight span,
-.code-block {
-  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace !important;
+/* ── Code ────────────────────────────────────────────────────────────── */
+code, pre, kbd,
+.highlight,
+.highlight span {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
   font-size: 0.875em;
 }
 
-/* Inline code */
-.content p code,
-.content li code {
+.content p > code,
+.content li > code {
   background: #f5f2f0;
   border-radius: 3px;
   padding: 0.1em 0.35em;
   color: #c0392b;
 }
 
-/* ── Reading comfort ─────────────────────────────────────────────────── */
-.article-body p, .content p {
-  line-height: 1.9;
-  letter-spacing: 0.02em;
-}
-
-/* MathJax */
-.MathJax, .MJX-TEX {
+/* ── MathJax ─────────────────────────────────────────────────────────── */
+.MathJax {
   font-size: 1.05em !important;
 }
