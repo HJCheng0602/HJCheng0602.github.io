@@ -1,20 +1,37 @@
-/* Fonts loaded via <link> in head (see _config.icarus.yml).
-   This file only handles overrides and comfort tweaks. */
+/* Fonts loaded via <link> in head (scripts/font-inject.js). */
 
-/* ── Global: Noto Serif SC for everything ────────────────────────────── */
-html, body {
-  font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif !important;
+/* ── Global: Noto Serif SC for entire page ───────────────────────────── */
+html, body, * {
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Article body content (.content is Icarus/Bulma's class) ─────────── */
+/* ── Navbar: same serif, letter-spacing for elegance ─────────────────── */
+.navbar,
+.navbar-brand,
+.navbar-item,
+.navbar-item.navbar-logo,
+a.navbar-item,
+.navbar-link,
+.navbar-menu,
+.navbar-start,
+.navbar-end {
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif !important;
+  letter-spacing: 0.04em;
+}
+
+/* ── Article & sidebar body text ─────────────────────────────────────── */
 .content,
 .content p,
 .content li,
 .content blockquote,
 .content td,
-.content th {
+.content th,
+.widget,
+.menu-list a,
+.card-content,
+.article-meta {
   font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif !important;
   line-height: 1.9;
 }
@@ -23,24 +40,16 @@ html, body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif !important;
   font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
-/* ── UI chrome: navbar, sidebar, tags, footer ────────────────────────── */
-.navbar,
-.navbar-item,
-.navbar-link,
-.footer,
-.tag,
-.button,
-.menu-label,
-.menu-list a,
-.card-header-title,
-.widget-title,
-.article-meta {
-  font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif !important;
+/* ── Tags, buttons, pagination: small UI elements ────────────────────── */
+.tag, .button, .tabs li a, .pagination, .breadcrumb,
+.footer, .footer a {
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif !important;
 }
 
-/* ── Code ────────────────────────────────────────────────────────────── */
+/* ── Code blocks ─────────────────────────────────────────────────────── */
 code, pre, kbd,
 .highlight,
 .highlight span {
@@ -54,6 +63,7 @@ code, pre, kbd,
   border-radius: 3px;
   padding: 0.1em 0.35em;
   color: #c0392b;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
 }
 
 /* ── MathJax ─────────────────────────────────────────────────────────── */
