@@ -109,7 +109,7 @@ widgets:
         position: left
         type: toc
         index: true
-        collapsed: true
+        collapsed: false
         depth: 3
     -
         position: right
