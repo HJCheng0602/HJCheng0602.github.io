@@ -1,8 +1,8 @@
 /* Fonts loaded via <link> in head (scripts/font-inject.js). */
 
-/* ── Global font: Neuton for Latin, Noto Serif SC for CJK ───────────── */
+/* ── Global font: PT Serif for Latin, Noto Serif SC for CJK ─────────── */
 html, body, * {
-  font-family: 'Neuton', 'Noto Serif SC', Georgia, serif;
+  font-family: 'PT Serif', 'Noto Serif SC', Georgia, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -22,7 +22,7 @@ a.navbar-item,
 .navbar-menu,
 .navbar-start,
 .navbar-end {
-  font-family: 'Oswald', sans-serif !important;
+  font-family: 'Aldrich', sans-serif !important;
   letter-spacing: 0.05em;
   font-weight: 400;
 }
@@ -38,7 +38,7 @@ a.navbar-item,
 .menu-list a,
 .card-content,
 .article-meta {
-  font-family: 'Neuton', 'Noto Serif SC', Georgia, serif !important;
+  font-family: 'PT Serif', 'Noto Serif SC', Georgia, serif !important;
   line-height: 1.5;
 }
 
@@ -54,15 +54,15 @@ a.navbar-item,
 
 /* ── Headings ────────────────────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Oswald', 'Noto Serif SC', sans-serif !important;
-  font-weight: 600;
+  font-family: 'Aldrich', 'Noto Serif SC', sans-serif !important;
+  font-weight: 400;
   color: #111;
   letter-spacing: 0.03em;
 }
 
 /* ── Article title ───────────────────────────────────────────────────── */
 .article .title {
-  font-family: 'Oswald', 'Noto Serif SC', sans-serif !important;
+  font-family: 'Aldrich', 'Noto Serif SC', sans-serif !important;
   font-size: 1.8rem !important;
   font-weight: 700;
   color: #111 !important;
@@ -96,7 +96,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ── Tags, buttons, pagination ───────────────────────────────────────── */
 .tag, .button, .tabs li a, .pagination, .breadcrumb,
 .footer, .footer a {
-  font-family: 'Neuton', 'Noto Serif SC', Georgia, serif !important;
+  font-family: 'PT Serif', 'Noto Serif SC', Georgia, serif !important;
 }
 
 /* ── Code blocks ─────────────────────────────────────────────────────── */
