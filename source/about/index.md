@@ -3,11 +3,11 @@ title: About
 date: 2025-08-05
 ---
 
-## Han Jincheng
+## Jincheng Han
 
 Student / Developer
 
-I am an undergraduate student majoring in Intelligence Science and Technology at Peking University. Currently exploring the 3R series (3D Reconstruction, Rendering, and Recognition), focusing on fundamental theories and classic algorithms in this field.
+I am an undergraduate student majoring in Intelligence Science and Technology at Peking University. I started out in Computer Vision — 3D reconstruction, rendering, and recognition — before shifting my focus fully to ML Systems. These days I care more about what happens under the hood: CUDA kernels, inference optimization, distributed training, and P/D disaggregation.
 
 ## Education
 
@@ -31,9 +31,11 @@ I am an undergraduate student majoring in Intelligence Science and Technology at
 - GitHub: [HJCheng0602](https://github.com/HJCheng0602)
 - Zhihu: [profile](https://www.zhihu.com/people/42-3-38-8-46)
 - X: [@HJCheng0602](https://x.com/HJCheng0602)
+- Email: [hanjincheng_eecs@stu.pku.edu.cn](mailto:hanjincheng_eecs@stu.pku.edu.cn)
+- Xiaohongshu: [profile](https://www.xiaohongshu.com/user/profile/66d5602e000000001d023f65)
 
 ## About This Blog
 
-This site covers notes on 3D reconstruction, machine learning systems, and occasional other topics.
+This site covers notes on ML Systems and occasional other topics.
 
 Built with [Hexo](https://hexo.io) + [Icarus](https://github.com/ppoffice/hexo-theme-icarus), hosted on Vercel.

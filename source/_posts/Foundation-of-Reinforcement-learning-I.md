@@ -9,7 +9,7 @@ categories:
     - blog
 ---
 
-## the category of decision making problem
+## The category of decision making problem
 
 |dimension|single step|multi step|
 |---|---|---|
@@ -59,7 +59,7 @@ Markov Decision Process (MDP) provides a mathematical framework for modeling dec
 - **Reward function (R)**: A function that defines the reward received after transitioning from one state to another given a specific action. It is denoted as $R(s,a)$, which represents the reward received after taking action $a$ in state $s$. **Sometimes only relates to the State.**
 - **Discount factor (γ)**: A factor that determines the importance of future rewards. It is a value between 0 and 1, where a value closer to 0 makes the agent prioritize immediate rewards, while a value closer to 1 makes the agent consider future rewards more heavily.
 
-### the dynamic feature of MDP
+### The dynamic feature of MDP
 The whole process of MDP is dynamic as follows:
 1. The agent observes the current state $s_t$.
 2. The agent selects an action $a_t$ based on its policy $\pi(a|s)$, which is a mapping from states to actions.
@@ -180,7 +180,7 @@ We have two important theorems about the occupancy measure:
 As we have defined the occupancy measure, we can compute the accumulated reward for a policy $\pi$ as follows:
 $$
 \begin{aligned}
-\mathbb{V}(\pi) &= \underset{a \sim \pi(\cdot|s),\, s' \sim p(\cdot|s,a)}{\mathbb{E}} \left[R(s_0, a_0) + \gamma R(s_1, a_1) + \gamma^2 R(s_2, a_2) + ...\right] \\\\
+\mathbb{V}(\pi) &= \underset{a \sim \pi(\cdot|s), s' \sim p(\cdot|s,a)}{\mathbb{E}} \left[R(s_0, a_0) + \gamma R(s_1, a_1) + \gamma^2 R(s_2, a_2) + ...\right] \\\\
 &= \sum_{s, a} \underset{a \sim \pi(\cdot|s),\, s' \sim p(\cdot|s,a)}{\mathbb{E}} \left[R(s, a)\right] \rho^{\pi}(s, a) \\\\
 &= \sum_{s, a} R(s, a) \rho^{\pi}(s, a) \\\\
 &= \underset{\rho^{\pi}}{\mathbb{E}}\left[R(s, a)\right]
@@ -192,7 +192,7 @@ The value function is used to evaluate a state or a state-action pair, given a p
 
 The state value function is usually know as value function, which is defined as follows:
 $$
-V^{\pi}(s) = \underset{a \sim \pi(\cdot|s),\, s' \sim p(\cdot|s,a)}{\mathbb{E}} \left[R(s, a) + \gamma V^{\pi}(s')\right]
+V^{\pi}(s) = \underset{a \sim \pi(\cdot|s), s' \sim p(\cdot|s,a)}{\mathbb{E}} \left[R(s, a) + \gamma V^{\pi}(s')\right]
 $$
 
 The state-action value function is usually know as Q function, which is defined as follows:

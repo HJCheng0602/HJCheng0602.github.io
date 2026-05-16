@@ -23,7 +23,7 @@ head:
         url:
         image:
         site_name:
-        author: Han Jincheng
+        author: Jincheng Han
         description:
         twitter_card:
         twitter_id: HJCheng0602
@@ -35,7 +35,7 @@ head:
         title:
         description:
         url:
-        author: Han Jincheng
+        author: Jincheng Han
         publisher:
         publisher_logo:
         image:
@@ -88,7 +88,7 @@ widgets:
     -
         position: left
         type: profile
-        author: Han Jincheng
+        author: Jincheng Han
         author_title: PKU · Intelligence Science & Technology
         location: Beijing, China
         avatar: /img/avatar.jpg
@@ -105,6 +105,12 @@ widgets:
             X:
                 icon: fab fa-x-twitter
                 url: https://x.com/HJCheng0602
+            Email:
+                icon: fas fa-envelope
+                url: mailto:hanjincheng_eecs@stu.pku.edu.cn
+            Xiaohongshu:
+                icon: si si-xiaohongshu
+                url: https://www.xiaohongshu.com/user/profile/66d5602e000000001d023f65
     -
         position: left
         type: categories
@@ -146,8 +152,8 @@ plugins:
     gallery: false
     google_analytics:
         tracking_id:
-    katex: false
-    mathjax: true
+    katex: true
+    mathjax: false
     outdated_browser: false
     pjax: false
     progressbar: true

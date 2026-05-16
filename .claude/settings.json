@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c ' *)",
+      "Bash(lsof -i:4001 -P -n)",
+      "Bash(curl -s http://localhost:4002/blog/Foundation-of-Reinforcement-learning-I/)"
+    ]
+  }
+}

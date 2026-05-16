@@ -33,6 +33,7 @@ relative_link: false
 marked:
   prependRoot: true
   postAsset: true
+  math: true
 future: true
 syntax_highlighter: highlight.js
 highlight:
