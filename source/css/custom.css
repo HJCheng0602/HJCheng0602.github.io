@@ -33,17 +33,17 @@ a.navbar-item,
 .card-content,
 .article-meta {
   font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif !important;
-  line-height: 1.85;
+  line-height: 1.75;
 }
 
 /* ── Article body ─────────────────────────────────────────────────────── */
 .article .content {
-  font-size: 0.975rem;
+  font-size: 0.9rem;
   color: #1a1a1a;
 }
 
 .article .content p {
-  margin-bottom: 1.1em;
+  margin-bottom: 1em;
 }
 
 /* ── Headings ────────────────────────────────────────────────────────── */
