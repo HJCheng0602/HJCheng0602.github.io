@@ -2,6 +2,7 @@
 title: SLAM Former 阅读
 date: 2025-11-01 15:48:00
 description: "论文SLAM Former的阅读记录"
+thumbnail: /blog/slam_former/imagecopy.png
 tags:
   - 3Dreconstruction
   - paper reading

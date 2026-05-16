@@ -2,6 +2,7 @@
 title: nanoPD:一个 LLM P/D 分离推理引擎的实现笔记
 date: 2026-04-11 17:48:00
 description: "A from-scratch Prefill/Decode disaggregation inference engine for LLMs"
+thumbnail: /blog/nanopd/image.png
 tags:
   - mlsys
   - cuda kernel

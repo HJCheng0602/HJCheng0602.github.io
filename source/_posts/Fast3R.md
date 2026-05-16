@@ -2,6 +2,7 @@
 title: 论文阅读记录：Fast3R
 date: 2025-09-04 8:18:00
 description: "Fast3R这篇论文的阅读，本人自己对Fast3R的理解"
+thumbnail: /blog/Fast3R/cover.png
 tags:
   - 3Dreconstruction
   - paper reading

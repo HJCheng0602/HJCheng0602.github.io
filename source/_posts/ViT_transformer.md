@@ -2,6 +2,7 @@
 title: ViT Transformer 的阅读?(应该算是阅读吧)
 date: 2025-11-25 21:10:00
 description: "一直在做三维重建相关的工作, 也一直用到 ViT encoder, 但是并不了解 ViT 的具体结构, 于是读了开山之作, 做一个简单的记录"
+thumbnail: /blog/ViT_transformer/image.png
 tags:
   - Learning note
   - conputer vision

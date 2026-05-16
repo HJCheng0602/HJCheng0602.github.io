@@ -2,6 +2,7 @@
 title: 回顾一下Transformer
 date: 2025-11-24 23:48:00
 description: "最近在学习一些模型架构方面的内容, Transformer快被我忘记了, 做一个简单的回顾以便日后查询"
+thumbnail: /blog/transformer/image.png
 tags:
   - Learning note
   - transformer

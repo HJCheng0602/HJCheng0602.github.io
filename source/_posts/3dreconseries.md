@@ -2,6 +2,7 @@
 title: 3D Reconstruction Series
 date: 2026-3-15 8:18:00
 description: "一个长期更新的3D recon(或许还有generate)论文的浅要阅读(已完结)"
+thumbnail: /blog/3dreconseries/cover.png
 tags:
   - 3Dreconstruction
   - paper reading
