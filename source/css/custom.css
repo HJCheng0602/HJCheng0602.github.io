@@ -100,6 +100,21 @@ h1, h2, h3, h4, h5, h6 {
 /* ── TOC hidden on non-post pages, categories hidden on post pages ───── */
 .widget[data-type="toc"] { display: none; }
 
+/* ── TOC scrollable and compact ─────────────────────────────────────── */
+#toc .card-content {
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+#toc .menu-list li {
+  line-height: 1.35;
+}
+
+#toc .menu-list a {
+  padding: 0.2em 0.5em;
+  font-size: 0.82rem;
+}
+
 /* ── Left sidebar width ──────────────────────────────────────────────── */
 @media screen and (min-width: 1280px) {
   .column-left {
