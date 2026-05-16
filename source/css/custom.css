@@ -1,8 +1,8 @@
 /* Fonts loaded via <link> in head (scripts/font-inject.js). */
 
-/* ── Global font: PT Serif for Latin, Noto Serif SC for CJK ─────────── */
+/* ── Global font: Neuton for Latin, Noto Serif SC for CJK ───────────── */
 html, body, * {
-  font-family: 'PT Serif', 'Noto Serif SC', Georgia, serif;
+  font-family: 'Neuton', 'Noto Serif SC', Georgia, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -38,7 +38,7 @@ a.navbar-item,
 .menu-list a,
 .card-content,
 .article-meta {
-  font-family: 'PT Serif', 'Noto Serif SC', Georgia, serif !important;
+  font-family: 'Neuton', 'Noto Serif SC', Georgia, serif !important;
   line-height: 1.5;
 }
 
@@ -96,7 +96,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ── Tags, buttons, pagination ───────────────────────────────────────── */
 .tag, .button, .tabs li a, .pagination, .breadcrumb,
 .footer, .footer a {
-  font-family: 'PT Serif', 'Noto Serif SC', Georgia, serif !important;
+  font-family: 'Neuton', 'Noto Serif SC', Georgia, serif !important;
 }
 
 /* ── Code blocks ─────────────────────────────────────────────────────── */
