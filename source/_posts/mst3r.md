@@ -2,7 +2,6 @@
 title: 论文阅读记录：MAst3R
 date: 2025-09-02 10:49:00
 description: "MAst3R这篇论文的阅读，本人自己对mast3r的理解"
-thumbnail: /blog/mst3r/image.png
 tags:
   - 3Dreconstruction
   - paper reading

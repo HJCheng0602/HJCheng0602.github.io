@@ -2,7 +2,6 @@
 title: VGGT读后有感
 date: 2025-08-14 20:04:00
 description: "本人读完VGGT:Visual Geometry Grounded Transformer之后的感想喵"
-thumbnail: /blog/VGGT/image.png
 tags:
   - 3Dreconstruction
   - paper reading

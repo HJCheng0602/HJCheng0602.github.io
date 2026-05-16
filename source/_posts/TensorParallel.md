@@ -2,7 +2,6 @@
 title: 学习笔记：Tensor Parallelism（TP）
 date: 2026-03-14
 description: "本文是读完Megatrion-LM及其他相关博文之后，对Tensor Parallelism（TP）的理解和总结，用于未来查阅"
-thumbnail: /blog/TensorParallel/cover.png
 tags:
   - Parallelism
   - learning notes

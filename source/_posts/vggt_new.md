@@ -2,7 +2,6 @@
 title: 重返vggt
 date: 2025-10-31 9:04:00
 description: "一段时间之后, 对vggt的重新的详细阅读"
-thumbnail: /blog/vggt_new/image.png
 tags:
   - 3Dreconstruction
   - paper reading

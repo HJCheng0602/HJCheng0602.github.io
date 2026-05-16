@@ -2,7 +2,6 @@
 title: 论文阅读记录：reloc3r
 date: 2025-09-06 14:0:00
 description: "位姿估计模型reloc3r的阅读和学习"
-thumbnail: /blog/bloc3r/cover.png
 tags:
   - 3d relocalization
   - paper reading

@@ -2,7 +2,6 @@
 title: HPCGames 题解 A B C 题
 date: 2026-02-04 8:18:00
 description: "最近参加了HPCGames比赛，写下这篇Blog记录一下自己对A B C题的理解与题解"
-thumbnail: /blog/HPCGamesABC/cover.png
 tags:
   - HPC games
   - parallel computing

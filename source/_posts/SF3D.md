@@ -2,7 +2,6 @@
 title: SF3D 论文阅读记录
 date: 2025-11-29 17:48:00
 description: "最近想了解一下mesh reconstruction, 于是阅读了SF3D这篇论文, 做笔记记录"
-thumbnail: /blog/SF3D/image.png
 tags:
   - 3Dreconstruction
   - paper reading

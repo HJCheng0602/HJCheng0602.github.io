@@ -2,7 +2,6 @@
 title: SLAM3R读后有感
 date: 2025-08-03
 description: "本人读完SLAM3R后的理解喵"
-thumbnail: /blog/SLAM3R/cover.png
 tags:
   - 3Dreconstruction
   - paper reading
