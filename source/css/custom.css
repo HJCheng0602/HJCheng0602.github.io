@@ -24,7 +24,8 @@ a.navbar-item,
 .navbar-end {
   font-family: 'Oswald', sans-serif !important;
   letter-spacing: 0.05em;
-  font-weight: 400;
+  font-weight: 800;
+  font-size: 1.1rem !important;
 }
 
 /* ── Article & sidebar body text ─────────────────────────────────────── */
@@ -45,6 +46,7 @@ a.navbar-item,
 /* ── Article body ─────────────────────────────────────────────────────── */
 .article .content {
   font-size: 1rem;
+  font-weight: 500;
   color: #1a1a1a;
 }
 
@@ -54,15 +56,15 @@ a.navbar-item,
 
 /* ── Headings ────────────────────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Oswald', sans-serif !important;
-  font-weight: 600;
+  font-family: 'Roboto', sans-serif !important;
+  font-weight: 100;
   color: #111;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.005em;
 }
 
 /* ── Article title ───────────────────────────────────────────────────── */
 .article .title {
-  font-family: 'Oswald', sans-serif !important;
+  font-family: 'Roboto', sans-serif !important;
   font-size: 2.2rem !important;
   font-weight: 700;
   color: #111 !important;
@@ -118,7 +120,7 @@ code, pre, kbd,
 
 /* ── MathJax ─────────────────────────────────────────────────────────── */
 .MathJax {
-  font-size: 1.05em !important;
+  font-size: 1.3em !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
