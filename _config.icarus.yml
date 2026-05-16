@@ -111,6 +111,18 @@ widgets:
         index: true
         collapsed: true
         depth: 3
+    -
+        position: right
+        type: recent_posts
+    -
+        position: right
+        type: archives
+    -
+        position: right
+        type: tags
+        order_by: '-length'
+        amount: 25
+        show_count: true
 plugins:
     animejs: false
     back_to_top: true
