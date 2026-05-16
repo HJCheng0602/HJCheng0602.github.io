@@ -43,13 +43,12 @@ head:
     rss:
 navbar:
     menu:
-        Home: /
-        Blog: /archives
-        Readings: /readings
-        Projects: /projects
-        Publications: /publications
-        Links: /links
-        About: /about
+        BLOG: /archives
+        READINGS: /readings
+        PROJECTS: /projects
+        PUBLICATIONS: /publications
+        LINKS: /links
+        ABOUT: /about
 
     links:
         GitHub:
