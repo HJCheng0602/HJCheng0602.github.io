@@ -9,8 +9,9 @@ hexo.extend.filter.register('after_render:html', function(html, data) {
 @media screen and (min-width: 1280px) {
   .column-right { display: none !important; }
   .column-main {
-    width: 82% !important;
-    flex: none !important;
+    flex: 1 1 0 !important;
+    width: auto !important;
+    max-width: none !important;
   }
 }
 </style>`;
