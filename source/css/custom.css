@@ -1,13 +1,18 @@
 /* Fonts loaded via <link> in head (scripts/font-inject.js). */
 
-/* ── Global: Noto Serif SC for entire page ───────────────────────────── */
+/* ── Global font: PT Serif for Latin, Noto Serif SC for CJK ─────────── */
 html, body, * {
-  font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif;
+  font-family: 'PT Serif', 'Noto Serif SC', Georgia, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Navbar: same serif, letter-spacing for elegance ─────────────────── */
+/* ── Base size and line-height (Lei Mao: 14px base, 1.5 lh) ─────────── */
+html {
+  font-size: 14px;
+}
+
+/* ── Navbar ──────────────────────────────────────────────────────────── */
 .navbar,
 .navbar-brand,
 .navbar-item,
@@ -17,8 +22,8 @@ a.navbar-item,
 .navbar-menu,
 .navbar-start,
 .navbar-end {
-  font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif !important;
-  letter-spacing: 0.04em;
+  font-family: 'PT Serif', 'Noto Serif SC', Georgia, serif !important;
+  letter-spacing: 0.03em;
 }
 
 /* ── Article & sidebar body text ─────────────────────────────────────── */
@@ -32,13 +37,13 @@ a.navbar-item,
 .menu-list a,
 .card-content,
 .article-meta {
-  font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif !important;
-  line-height: 1.75;
+  font-family: 'PT Serif', 'Noto Serif SC', Georgia, serif !important;
+  line-height: 1.5;
 }
 
 /* ── Article body ─────────────────────────────────────────────────────── */
 .article .content {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #1a1a1a;
 }
 
@@ -48,15 +53,14 @@ a.navbar-item,
 
 /* ── Headings ────────────────────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif !important;
+  font-family: 'PT Serif', 'Noto Serif SC', Georgia, serif !important;
   font-weight: 700;
   color: #111;
-  letter-spacing: 0.01em;
 }
 
 /* ── Article title ───────────────────────────────────────────────────── */
 .article .title {
-  font-size: 1.6rem !important;
+  font-size: 1.57rem !important;
   font-weight: 700;
   color: #111 !important;
   line-height: 1.3;
@@ -67,28 +71,28 @@ h1, h2, h3, h4, h5, h6 {
 .article-meta {
   font-size: 0.78rem !important;
   color: #999 !important;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  margin-bottom: 2.2rem !important;
+  margin-bottom: 2rem !important;
 }
 
 /* ── Section headings inside article ─────────────────────────────────── */
 .article .content h2 {
-  font-size: 1.25rem;
-  margin-top: 2.2rem;
-  margin-bottom: 0.6rem;
+  font-size: 1.28rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .article .content h3 {
-  font-size: 1.05rem;
-  margin-top: 1.6rem;
-  margin-bottom: 0.4rem;
+  font-size: 1.07rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.3rem;
 }
 
-/* ── Tags, buttons, pagination: small UI elements ────────────────────── */
+/* ── Tags, buttons, pagination ───────────────────────────────────────── */
 .tag, .button, .tabs li a, .pagination, .breadcrumb,
 .footer, .footer a {
-  font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif !important;
+  font-family: 'PT Serif', 'Noto Serif SC', Georgia, serif !important;
 }
 
 /* ── Code blocks ─────────────────────────────────────────────────────── */
