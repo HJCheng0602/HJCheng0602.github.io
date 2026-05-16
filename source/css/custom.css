@@ -193,8 +193,3 @@ code, pre, kbd,
   font-size: 0.9rem;
   color: #7a7a7a;
 }
-
-/* X (Twitter) icon: override white default to dark */
-.fa-x-twitter {
-  color: #111111 !important;
-}

@@ -154,4 +154,4 @@ plugins:
 providers:
     cdn: jsdelivr
     fontcdn: google
-    iconcdn: fontawesome
+    iconcdn: 'https://use.fontawesome.com/releases/v6.5.2/css/all.css'
