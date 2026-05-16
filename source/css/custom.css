@@ -45,7 +45,7 @@ a.navbar-item,
 
 /* ── Article body ─────────────────────────────────────────────────────── */
 .article .content {
-  font-size: 1rem;
+  font-size: 0.9em;
   font-weight: 500;
   color: #1a1a1a;
 }
@@ -56,16 +56,16 @@ a.navbar-item,
 
 /* ── Headings ────────────────────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto', sans-serif !important;
-  font-weight: 100;
+  font-family: 'Oswald', sans-serif !important;
+  font-weight: 700;
   color: #111;
-  letter-spacing: 0.005em;
+  letter-spacing: 0.05em;
 }
 
 /* ── Article title ───────────────────────────────────────────────────── */
 .article .title {
-  font-family: 'Roboto', sans-serif !important;
-  font-size: 2.2rem !important;
+  font-family: 'Oswald', sans-serif !important;
+  font-size: 2.9rem !important;
   font-weight: 700;
   color: #111 !important;
   line-height: 1.25;
