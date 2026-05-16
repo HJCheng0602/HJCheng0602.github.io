@@ -22,8 +22,9 @@ a.navbar-item,
 .navbar-menu,
 .navbar-start,
 .navbar-end {
-  font-family: 'PT Serif', 'Noto Serif SC', Georgia, serif !important;
-  letter-spacing: 0.03em;
+  font-family: 'Oswald', sans-serif !important;
+  letter-spacing: 0.05em;
+  font-weight: 400;
 }
 
 /* ── Article & sidebar body text ─────────────────────────────────────── */
@@ -53,17 +54,20 @@ a.navbar-item,
 
 /* ── Headings ────────────────────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'PT Serif', 'Noto Serif SC', Georgia, serif !important;
-  font-weight: 700;
+  font-family: 'Oswald', 'Noto Serif SC', sans-serif !important;
+  font-weight: 600;
   color: #111;
+  letter-spacing: 0.03em;
 }
 
 /* ── Article title ───────────────────────────────────────────────────── */
 .article .title {
-  font-size: 1.57rem !important;
+  font-family: 'Oswald', 'Noto Serif SC', sans-serif !important;
+  font-size: 1.8rem !important;
   font-weight: 700;
   color: #111 !important;
-  line-height: 1.3;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
   margin-bottom: 0.4rem !important;
 }
 
