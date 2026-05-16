@@ -107,7 +107,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #toc .menu-list li {
-  line-height: 1.35;
+  line-height: 1.15;
 }
 
 #toc .menu-list a {
@@ -115,9 +115,13 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.82rem;
 }
 
-/* ── Left sidebar width ──────────────────────────────────────────────── */
+/* ── Sidebar widths ──────────────────────────────────────────────────── */
 @media screen and (min-width: 1280px) {
   .column-left {
+    width: 20% !important;
+    flex: none !important;
+  }
+  .column-right {
     width: 20% !important;
     flex: none !important;
   }
