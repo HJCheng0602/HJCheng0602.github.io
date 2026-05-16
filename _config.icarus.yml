@@ -106,6 +106,9 @@ widgets:
                 url: https://x.com/HJCheng0602
     -
         position: left
+        type: categories
+    -
+        position: left
         type: toc
         index: true
         collapsed: false

@@ -14,6 +14,9 @@ hexo.extend.filter.register('after_render:html', function(html, data) {
     max-width: none !important;
   }
 }
+/* Post pages: show TOC, hide categories */
+.widget[data-type="toc"] { display: block !important; }
+.widget[data-type="categories"] { display: none !important; }
 </style>`;
   return html.replace('</head>', style + '</head>');
 });

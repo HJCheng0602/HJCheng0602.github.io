@@ -97,6 +97,9 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.3rem;
 }
 
+/* ── TOC hidden on non-post pages, categories hidden on post pages ───── */
+.widget[data-type="toc"] { display: none; }
+
 /* ── Left sidebar width ──────────────────────────────────────────────── */
 @media screen and (min-width: 1280px) {
   .column-left {
