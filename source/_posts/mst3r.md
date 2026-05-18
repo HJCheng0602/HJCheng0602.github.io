@@ -10,17 +10,17 @@ categories:
 ---
 
 ## 引言
-经过一周的对[SLAM3R](https://github.com/HJCheng0602/SLAM3R)进行online以及可视化demo改造的低效率劳作且工作完成，我终于有时间来补档我这篇早在近两个周之前就读完的论文[Grounding Image Matching in 3D with MASt3R](https://github.com/naver/mast3r)
+经过一周的对[SLAM3R](https://github.com/HJCheng0602/SLAM3R)进行 online 以及可视化 demo 改造的低效率劳作且工作完成，我终于有时间来补档我这篇早在近两个周之前就读完的论文[Grounding Image Matching in 3D with MASt3R](https://github.com/naver/mast3r)
 
-读完这篇论文之后，我的第一感觉就是：这是一个DUst3R的修补模型，他并没有太多的像DUst3R那样的开创性地将transformer运用于双目三维重建那样的举动，而是在DUst3R模型上进行了
-少许修补，并提出了少许修补中的一些独创性方法，感觉是一篇介绍small trick的论文。同时，我们似乎也可以这么说：MAst3R发现本聚焦于三维重建任务的DUst3R在像素匹配问题上同样达到了SOTA
-于是，MAst3R将DUst3R稍加改造，得到了一个在像素匹配上表现更强的模型MAst3R.
+读完这篇论文之后，我的第一感觉就是：这是一个 DUst3R 的修补模型，他并没有太多的像 DUst3R 那样的开创性地将 transformer 运用于双目三维重建那样的举动，而是在 DUst3R 模型上进行了
+少许修补，并提出了少许修补中的一些独创性方法，感觉是一篇介绍 small trick 的论文。同时，我们似乎也可以这么说： MAst3R 发现本聚焦于三维重建任务的 DUst3R 在像素匹配问题上同样达到了 SOTA
+于是， MAst3R 将 DUst3R 稍加改造，得到了一个在像素匹配上表现更强的模型 MAst3R.
 
 ## 模型介绍
-MASt3R的模型结构与Dust3R大致相同：
+MASt3R 的模型结构与 Dust3R 大致相同：
 ![mast3r](12.png)
-### Encoder 
-与DUst3R相同，MAst3R的encoder部分同样是由ViT组成的，且与DUst3R相同的是，MAst3R的encoder部分也是共享权重的。
+### Encoder
+与 DUst3R 相同， MAst3R 的 encoder 部分同样是由 ViT 组成的，且与 DUst3R 相同的是， MAst3R 的 encoder 部分也是共享权重的。
 就像这样：
 $$
 H_1 = Encoder(I^1) \\
@@ -28,59 +28,59 @@ H_2 = Encoder(I^2)
 $$
 
 ### Decoder
-MASt3R的Decoder同样采用了cross-attention的机制，这能使得MAst3R能够理解同一像素在不同视角下的信息，有助于后续进行像素匹配。
+MASt3R 的 Decoder 同样采用了 cross-attention 的机制，这能使得 MAst3R 能够理解同一像素在不同视角下的信息，有助于后续进行像素匹配。
 $$
 H'^1, H'^2 = Decoder(H^1, H^2) 
 $$
 
 ### Heads
-对于Dust3R来说，他只有一个head，直接将decoder的输出转化为点图信息和置信度（上图灰色部分）
+对于 Dust3R 来说，他只有一个 head ，直接将 decoder 的输出转化为点图信息和置信度（上图灰色部分）
 #### 3D Heads
-MASt3R对这个head基本上与DUst3R的head相同，都是将decoder的输出转化为点图信息和置信度。
+MASt3R 对这个 head 基本上与 DUst3R 的 head 相同，都是将 decoder 的输出转化为点图信息和置信度。
 #### Matching Heads
-MASt3R在此基础上又增加了一个head，专门用于像素匹配任务(上图蓝色部分)，这个头部由一个简单的两层的MLP组成，使用了GELU作为激活函数，另外在处理完后进行归一化处理，负责输出两张密集的特征图：
+MASt3R 在此基础上又增加了一个 head ，专门用于像素匹配任务(上图蓝色部分)，这个头部由一个简单的两层的 MLP 组成，使用了 GELU 作为激活函数，另外在处理完后进行归一化处理，负责输出两张密集的特征图：
 $$
 D^1 = Head_{desc}^1([H'_1, H'_2]) \\
 D^2 = Head_{desc}^2([H'_1, H'_2])
 $$
 
 ### Loss
-Mast3R的损失函数由两部分组成：
+Mast3R 的损失函数由两部分组成：
 $$
 \mathcal{L}_{total}=\mathcal{L}_{conf}+ \beta\mathcal{L}_{match}
 $$
 
 #### 3D Loss
-MAst3R的3D Loss与DUst3R的3D Loss基本相同，都是由点图的L1损失和置信度的交叉熵损失组成。
-但是，MAst3R在计算回归损失的时候，原本的DUst3R计算公式是这样的：
+MAst3R 的 3D Loss 与 DUst3R 的 3D Loss 基本相同，都是由点图的 L1 损失和置信度的交叉熵损失组成。
+但是， MAst3R 在计算回归损失的时候，原本的 DUst3R 计算公式是这样的：
 $$
 \ell_{\mathrm{regr}}(\nu,i)=\left\|\frac{1}{z}X_i^{\nu,1}-\frac{1}{\hat{z}}\hat{X}_i^{\nu,1}\right\|,
 $$
-MAst3R 认为在它的应用场景中，并不鼓励尺度不变性，而更多的是需要绝对的尺度一致性，因此MAst3R将上式改为了：
+MAst3R 认为在它的应用场景中，并不鼓励尺度不变性，而更多的是需要绝对的尺度一致性，因此 MAst3R 将上式改为了：
 $$
 \ell_{\mathrm{regr}}(\nu,i)=\frac{\left\|X_i^{\nu,1}-\hat{X}_i^{\nu,1}\right\|}{\hat{z}}
 $$
-因此，MAst3R的3D Loss计算公式为：
+因此， MAst3R 的 3D Loss 计算公式为：
 $$
 \mathcal{L}_{\mathrm{conf}}=\sum_{\nu\in\{1,2\}}\sum_{i\in\mathcal{V}^\nu}C_i^\nu\ell_{\mathrm{regr}}(\nu,i)-\alpha\log C_i^\nu.
 $$
 #### Matching Loss
-这个损失函数是对Matching Head输出的特征图进行监督的，基本思想是：我们鼓励一个图像中的一个特征匹配符，最多与另一张图像中代表同一个3D点的特征匹配符进行匹配，
+这个损失函数是对 Matching Head 输出的特征图进行监督的，基本思想是：我们鼓励一个图像中的一个特征匹配符，最多与另一张图像中代表同一个 3D 点的特征匹配符进行匹配，
 需要注意的是，这个匹配本质上是一个交叉熵分类损失，当网络猜到正确的像素（而非邻近的像素）时，才会得到奖励。
 
-具体实现上，我们利用了InfoNCE loss来实现这个想法，其作用于一组对应关系$\hat{\mathcal{M}} = \{ (i, j)|\hat{X_i}^{1,1} = \hat{X_j}^{2,1} \}$，具体公式如下：
+具体实现上，我们利用了 InfoNCE loss 来实现这个想法，其作用于一组对应关系$\hat{\mathcal{M}} = \{ (i, j)|\hat{X_i}^{1,1} = \hat{X_j}^{2,1} \}$，具体公式如下：
 $$
 \mathcal{L}_{\mathrm{match}}=-\sum_{(i,j)\in\hat{\mathcal{M}}}\log\frac{s_\tau(i,j)}{\sum_{k\in\mathcal{P}^1}s_\tau(k,j)}+\log\frac{s_\tau(i,j)}{\sum_{k\in\mathcal{P}^2}s_\tau(i,k)}
 $$
-其中，$s_\tau(i,j)=\exp(\frac{D_i^1\cdot D_j^2}{\tau})$，$\tau$是一个温度参数，$\mathcal{P}^1$和$\mathcal{P}^2$分别是图像1和图像2中所有像素的集合。
+其中，$s_\tau(i,j)=\exp(\frac{D_i^1\cdot D_j^2}{\tau})$，$\tau$是一个温度参数，$\mathcal{P}^1$和$\mathcal{P}^2$分别是图像 1 和图像 2 中所有像素的集合。
 
 这极大地鼓励了网络进行高精度匹配。
 
-最后，两个损失函数被结合起来，形成了MAst3R的总损失函数：
+最后，两个损失函数被结合起来，形成了 MAst3R 的总损失函数：
 $$
 \mathcal{L}_{total}=\mathcal{L}_{conf}+ \beta\mathcal{L}_{match}
 $$
-有了上述模型与Loss就可以训练了，但是网络的输出还需要经过一些处理，才能得到需要的匹配关系。注意，网络只输出了PointMap和每个像素的LocalFeature，而期望得到的是两个图像之间的像素点级别的匹配，匹配相关的部分就是图中新增的NN模块。
+有了上述模型与 Loss 就可以训练了，但是网络的输出还需要经过一些处理，才能得到需要的匹配关系。注意，网络只输出了 PointMap 和每个像素的 LocalFeature ，而期望得到的是两个图像之间的像素点级别的匹配，匹配相关的部分就是图中新增的 NN 模块。
 
 ## 快速互惠匹配
 当给定两张特定的预测图$DD^1,D^2\in\mathbb{R}^{H\times W\times d}$时，我们的目标是提取一组可靠的像素对应关系，即互惠最近邻。
@@ -120,15 +120,14 @@ $$
 具体证明过程可以参考论文的附录部分。
 
 ## 个人总结
-MAst3R这篇论文的阅读，本人自己对mast3r的理解，以及对transformer在三维重建任务中应用的理解，基本上就到这里了，当然，mast3r的实验部分我并没有过多地去阅读，因为我觉得mast3r的实验部分并没有太多的创新性，基本上都是在验证mast3r在各个任务上都达到了SOTA的水平。
-我个人觉得mast3r的创新点主要有以下几点：
-1. 在DUst3R的基础上，增加了一个匹配头，用于像素匹配任务，这个头部的设计比较简单，但是效果却非常好。
-2. 在3D损失函数中，改变了点图回归损失的计算方式，使其更加适合绝对尺度一致性的任务。
+MAst3R 这篇论文的阅读，本人自己对 mast3r 的理解，以及对 transformer 在三维重建任务中应用的理解，基本上就到这里了，当然， mast3r 的实验部分我并没有过多地去阅读，因为我觉得 mast3r 的实验部分并没有太多的创新性，基本上都是在验证 mast3r 在各个任务上都达到了 SOTA 的水平。
+我个人觉得 mast3r 的创新点主要有以下几点：
+1. 在 DUst3R 的基础上，增加了一个匹配头，用于像素匹配任务，这个头部的设计比较简单，但是效果却非常好。
+2. 在 3D 损失函数中，改变了点图回归损失的计算方式，使其更加适合绝对尺度一致性的任务。
 3. 提出了一个快速的互惠匹配算法，大大提升了匹配的效率。
-总的来说，MAst3R是一篇比较实用的论文，通过一些小的改动和创新，使得模型在多个任务上都达到了SOTA的水平，值得学习和借鉴。
+总的来说， MAst3R 是一篇比较实用的论文，通过一些小的改动和创新，使得模型在多个任务上都达到了 SOTA 的水平，值得学习和借鉴。
 
-另外，MAst3R的代码也已经开源：
-
+另外， MAst3R 的代码也已经开源：
 
 
 喵喵补坑完毕，虽然感觉说了和没说一样😭

@@ -11,14 +11,14 @@ categories:
 ---
 
 ## 引言
-在快要到2026年的今天, ViT 相比于当下的复杂的结构而言, 已经显得比较简单了, 我读论文的时候的最大感觉是, 它充满了 Transformer 在各领域蓬勃发展的野蛮生长的气息.
-但是作为 Transformer 在CV领域的里程碑式的工作, 并且我作为这方面的初学者, 我觉着还是需要读一下这一篇论文[An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://arxiv.org/abs/2010.11929), 做一个简单的记录.
+在快要到 2026 年的今天, ViT 相比于当下的复杂的结构而言, 已经显得比较简单了, 我读论文的时候的最大感觉是, 它充满了 Transformer 在各领域蓬勃发展的野蛮生长的气息.
+但是作为 Transformer 在 CV 领域的里程碑式的工作, 并且我作为这方面的初学者, 我觉着还是需要读一下这一篇论文[An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://arxiv.org/abs/2010.11929), 做一个简单的记录.
 
 ## ViT 的整体结构
 ViT 的整体结构如下图所示:
 ![1](image.png)
 可以看到, 他的特殊处理是在于输入部分, 传统的 CNN 是通过 kernel 来滑动提取局部信息, 这样的一个 CNN 的输出很难直接送入 Transformer 中进行处理, 因为
- Transformer 需要的是一个序列化的输入, 而CNN 的输出是一个三维的 feature map.
+ Transformer 需要的是一个序列化的输入, 而 CNN 的输出是一个三维的 feature map.
 
 因此, 相较于同期的其他处理, ViT 直接将输入图像划分为若干个小的 patch, 然后将每个 patch 展平并映射到一个固定维度的向量空间中, 形成一个序列化的输入, 这样就可以直接送入 Transformer 中进行处理.
 
@@ -32,9 +32,9 @@ $$
 X \in \mathbb{R}^{224 \times 224 \times 3} \rightarrow 196 \times Patchs^{16 \times 16 \times 3} \rightarrow Flattened_Patchs^{196 \times 768} \rightarrow \\
 Transformer Input^{197 \times 768} \rightarrow Transformer Output^{197 \times 768} \rightarrow Classifier Output^{1 \times 1000}
 $$
-为什么新加上的class token work?
+为什么新加上的 class token work?
 
-- 因为在transformer中, 两两token之间是可以相互attention的, 因此class token可以和所有的patch token进行attention, 从而聚合全局的信息, 这样我们就可以在最终的输出中使用class token来进行分类任务.
+- 因为在 transformer 中, 两两 token 之间是可以相互 attention 的, 因此 class token 可以和所有的 patch token 进行 attention, 从而聚合全局的信息, 这样我们就可以在最终的输出中使用 class token 来进行分类任务.
 
 ## 一些其他的细节
 相对于 CNN 而言, ViT 的先验信息很少, 因此在中小数据集上的表现并不理想, 论文中提到需要在大规模数据集上进行预训练, 然后再进行微调, 才能取得较好的效果.

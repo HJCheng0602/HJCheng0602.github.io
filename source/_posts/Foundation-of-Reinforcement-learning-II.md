@@ -10,7 +10,7 @@ categories:
 ---
 
 ## Introduction
-Given the former post where we have introduced the MDP and some basic properties, we are now ready to discuss the MDP-based Reinforcement learning.But first, we need to introduce the solution of MDP.
+Given the former post where we have introduced the MDP and some basic properties, we are now ready to discuss the MDP-based Reinforcement learning. But first, we need to introduce the solution of MDP.
 
 ## Bellman Equation
 If we have learned the previous post, we will know that there are two types of value function, state value function and action value function. Their mathematical definitions are as follows:
@@ -69,7 +69,7 @@ $$
 > V^{\ast}(s) = \max_{a'} \left[ R(s, a') + \gamma \sum_{s'} P(s'|s, a') V^{\ast}(s') \right] \\\\ \geq R(s, a) + \gamma \sum_{s'} P(s'|s, a) V^*(s')
 > $$
 > Thus, $V^{\ast}$ satisfies the constraints of the linear programming problem.
-> The second part is to show that any feasible solution satisfying the constraints must be greater than or equal to $V^{\ast}$. 
+> The second part is to show that any feasible solution satisfying the constraints must be greater than or equal to $V^{\ast}$.
 > Given that the optimal policy $\pi^{\ast}$ choose one action $\pi^{\ast}(s)$ for each state $s$, LP constraints imply that for any state $s$:
 > $$
 > V(s) \geq R(s, \pi^{\ast}(s)) + \gamma \sum_{s'} P(s'|s, \pi^{\ast}(s)) V(s')
@@ -131,4 +131,3 @@ $$
 
 ## Summary
 At the beginning of this post, I tried to introduce the MDP-based Reinforcement learning, but I found that the solution of MDP takes a lot of space, so I just introduce the Bellman equation and the linear programming formulation for MDP. In the next post, I will introduce the value iteration and policy iteration algorithms for solving MDP, which are based on the Bellman equation.
-

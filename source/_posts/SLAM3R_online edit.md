@@ -9,9 +9,9 @@ categories:
   - blog
 ---
 
-在上个周阅读**SLAM3R**论文结束后，学长让我去看一下它的[源代码](https://github.com/PKU-VCL-3DV/SLAM3R)，读完代码之后，发现虽然论文里讲述的是“可以实时重建”，但是实际上在`recon.py`文件中的`scene_recon_pipeline`函数中，代码采取了先对所有`input_views`进行输入到`i2p_model`得到`res_feats`，然后再将所有图片的token输入到l2w网络中进行重建的大致逻辑。
+在上个周阅读**SLAM3R**论文结束后，学长让我去看一下它的[源代码](https://github.com/PKU-VCL-3DV/SLAM3R)，读完代码之后，发现虽然论文里讲述的是“可以实时重建”，但是实际上在`recon.py`文件中的`scene_recon_pipeline`函数中，代码采取了先对所有`input_views`进行输入到`i2p_model`得到`res_feats`，然后再将所有图片的 token 输入到 l2w 网络中进行重建的大致逻辑。
 
-显然，这样的处理方法不是论文里所提出的**online**处理方法，因此，在过去的一个周里，本人一边练着科三显然今天上午刚挂掉，该死的直线行驶😡，同时抽出了一点点时间完成了`recon_online.py`,一个把原本的`scene_recon_pipeline`改成`online`处理的改动。
+显然，这样的处理方法不是论文里所提出的**online**处理方法，因此，在过去的一个周里，本人一边练着科三显然今天上午刚挂掉，该死的直线行驶😡，同时抽出了一点点时间完成了`recon_online.py`, 一个把原本的`scene_recon_pipeline`改成`online`处理的改动。
 
 ## 原函数的处理逻辑
 阅读原函数的代码，我们可以将其分为以下几段：
@@ -43,7 +43,7 @@ for view in data_views:
 res_shapes, res_feats, res_poses = get_img_tokens(data_views, i2p_model)    # 300+fps
 print('finish pre-extracting img tokens')
 ```
-这里重点就是最后的`res_shapes, res_feats, res_poses = get_img_tokens(data_views, i2p_model)`，采用`i2p_model`的`_encode_multiview`方法批次化地(*batchify*)对`data_views`进行处理，从而得到所有的view的`token`。
+这里重点就是最后的`res_shapes, res_feats, res_poses = get_img_tokens(data_views, i2p_model)`，采用`i2p_model`的`_encode_multiview`方法批次化地(*batchify*)对`data_views`进行处理，从而得到所有的 view 的`token`。
 
 ### 对所有view进行推理得到最合适的key_frame_stride
 
@@ -59,14 +59,14 @@ if args.keyframe_stride == -1:
 else:
     kf_stride = args.keyframe_stride
 ```
-其中，`adapt_keyframe_stride`函数是一个典型的**offline**处理函数，它的功能是在所有的input_view中遍历可能的`kf_stride`取值，然后对每一个可能的取值随机取样，然后利用`i2p_inference_batch`函数得出置信度作为相似度？然后选取最高的所对应的`kf_stride`作为最优的取值。
+其中，`adapt_keyframe_stride`函数是一个典型的**offline**处理函数，它的功能是在所有的 input_view 中遍历可能的`kf_stride`取值，然后对每一个可能的取值随机取样，然后利用`i2p_inference_batch`函数得出置信度作为相似度？然后选取最高的所对应的`kf_stride`作为最优的取值。
 
 
-### 使用初始的几个滑动窗口创建初始的全局scene&初始化buffer set 
+### 使用初始的几个滑动窗口创建初始的全局scene&初始化buffer set
 因为**SLAM3R**初始化时的[特殊性](http://localhost:4321/blog/slam3r/slam3r):
-> 对于第一个帧这种特殊情况，我们采用了重复运行多次I2P获取足够多数量的初始帧作为缓冲集
+> 对于第一个帧这种特殊情况，我们采用了重复运行多次 I2P 获取足够多数量的初始帧作为缓冲集
 
-在原本的offline格式的`recon.py`中，这种做法以这种样式呈现：
+在原本的 offline 格式的`recon.py`中，这种做法以这种样式呈现：
 ```python
 initial_pcds, initial_confs, init_ref_id = initialize_scene(input_views[:initial_winsize*kf_stride:kf_stride], 
                                                 i2p_model, 
@@ -200,7 +200,7 @@ for i in range(init_num):
     registered_confs_mean[i*kf_stride] = per_frame_res['l2w_confs'][i*kf_stride].mean().cpu()
 ```
 ### 对剩下的views进行注册
-OK，经过了以上的对于初始帧的特殊处理，我们终于踏入了正途：在过程中对每个帧进行实时处理
+OK ，经过了以上的对于初始帧的特殊处理，我们终于踏入了正途：在过程中对每个帧进行实时处理
 
 #### 从buffer set里选择最相近的sel_num个帧：
 ```python
@@ -213,7 +213,7 @@ ref_views, sel_pool_ids = scene_frame_retrieve(
     # cand_recon_confs=[per_frame_res['l2w_confs'][i] for i in cand_ref_ids],
     depth=2)
 ```
-这里正如论文中所述，采用了`i2p_model`的前2个**decoder**进行相似评分。
+这里正如论文中所述，采用了`i2p_model`的前 2 个**decoder**进行相似评分。
 
 #### 将选取的最相近的几个帧作为参考合并当前帧进行l2w重建
 显而易见，言以概之：
@@ -294,11 +294,11 @@ for i in range(next_register_id):
 ### 保存环节
 当我们处理完所有帧后，我们会保存我们的所有帧的点云，把这些所有帧的点云合到一起进行重建，得出最后的场景点云。
 
-### review 
+### Review
 显而易见，原`recon.py`中的这个`pipeline`是一个完全的**offline**处理方法，因此，我编写了一个真正的（？**online**版本的方法，处理逻辑如下所示：
 
-## online 函数的处理逻辑
-既然是要online，我们显然第一件要做的事情就是写下：
+## Online 函数的处理逻辑
+既然是要 online ，我们显然第一件要做的事情就是写下：
 ```python
 for i in range(len(data_views)):
 ```
@@ -306,7 +306,7 @@ for i in range(len(data_views)):
 
 ### 预处理 & 得到当前view的token
 
-显然，通过对原先**offline**版本的函数分析，这个过程没有初始化的困扰，因此，我们可以大胆对所有遍历到的view都进行这一步：
+显然，通过对原先**offline**版本的函数分析，这个过程没有初始化的困扰，因此，我们可以大胆对所有遍历到的 view 都进行这一步：
 ```python
 # Pre-save the RGB images along with their corresponding masks
 # in preparation for visualization at last.
@@ -342,13 +342,13 @@ for key in per_frame_res:
     per_frame_res[key].append(None)
 registered_confs_mean.append(i)
 ```
-这里我使用了一个`get_single_img_tokens`函数，与之前的`get_img_tokens`函数相比，该函数除了不能batch化(online的限制)之外，效果输出别无二致。
+这里我使用了一个`get_single_img_tokens`函数，与之前的`get_img_tokens`函数相比，该函数除了不能 batch 化(online 的限制)之外，效果输出别无二致。
 
 
 ### 积累帧以用于场景初始化
 需要注意的是，当帧序数小于初始化所需要的帧数时，我们后续的程序均无法进行，因此在我的代码中，我选择直接跳过，先蓄势待发🤣
 
-一旦积累到初始化场景所需帧后，函数会采用一系列操作初始化场景以及初始化buffer set，对初始化后的各帧点云进行归一化处理：
+一旦积累到初始化场景所需帧后，函数会采用一系列操作初始化场景以及初始化 buffer set ，对初始化后的各帧点云进行归一化处理：
 
 ```python
 # accumulate the initial window frames
@@ -382,7 +382,7 @@ elif i == (initial_winsize - 1)*kf_stride:
 elif i < (initial_winsize - 1) * kf_stride:
     continue
 ```
-需要注意的是，这里一旦积累到足够多的初始帧，我们就不会进行continue处理了，然后直接进行下一部分。
+需要注意的是，这里一旦积累到足够多的初始帧，我们就不会进行 continue 处理了，然后直接进行下一部分。
 
 ### 对之前积累的view进行i2p重建点图（包含正在处理的帧） & 注册初始窗口非关键帧
 这里我们采用类似于之前**offline**的顺序，只不过把外在的表现形式作出了改变，实际上内在的顺序逻辑基本不变：
@@ -579,10 +579,8 @@ reconstructor.add_frame(
                     conf_thres_res=conf_thres_l2w
                 )
 ```
-OK，到此为止我就写完了原本的处理逻辑的解释和新写的**onlinee*处理逻辑介绍，其实要说不说，**online**处理逻辑也并非太过复杂，但是奈何我这几天因为学车耽误了太多时间也没做什么东西（x
+OK ，到此为止我就写完了原本的处理逻辑的解释和新写的**onlinee*处理逻辑介绍，其实要说不说，**online**处理逻辑也并非太过复杂，但是奈何我这几天因为学车耽误了太多时间也没做什么东西（ x
 
-又水了一篇blog😋
+又水了一篇 blog😋
 
 ## 新的仓库：
-
-

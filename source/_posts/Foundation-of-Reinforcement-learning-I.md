@@ -14,7 +14,7 @@ categories:
 |dimension|single step|multi step|
 |---|---|---|
 |one person| optimization problem| RL, to the best situation|
-|multi person| static game| dynamic game, MARL .etc|
+|multi person| static game| dynamic game, MARL.etc|
 
 ## Dynamic programming
 
@@ -22,7 +22,7 @@ Dynamic program is used to solve the Sequential decision making problem, feature
 
 For an example, given a maze like problem below, the agent need to find a way from Position A to Position B, and the time of each way is different. Agent need to find the way with the least time. A simple way to solve this is to list all the possible paths, but if there is a circle, if the map is large, this will be unfeasible.
 
-A better way to solve this is Backward induction, we start from the end point, and for evey point we calculate the time to reach the end point, then we regart the selected point as the new end point, and repeat this process until we reach the start point. This is a dynamic programming method, and it can solve the problem in polynomial time.But due to we need find a backward path, this method is only suitable for DAG, if there is a circle, this method will fail.
+A better way to solve this is Backward induction, we start from the end point, and for evey point we calculate the time to reach the end point, then we regart the selected point as the new end point, and repeat this process until we reach the start point. This is a dynamic programming method, and it can solve the problem in polynomial time. But due to we need find a backward path, this method is only suitable for DAG, if there is a circle, this method will fail.
 
 ![maze](maze.png)
 
@@ -49,7 +49,7 @@ P(X_{t+1}|X_t,X_{t-1},...,X_0) = P(X_{t+1}|X_t)
 $$
 This means that the probability of the next state $X_{t+1}$ only depends on the current state $X_t$, and is independent of all the previous states $X_{t-1},...,X_0$.
 
-Trying to understand it's property is that the current state contains all the information about the past, so we can make decision based on the current state without worrying about the past. 
+Trying to understand it's property is that the current state contains all the information about the past, so we can make decision based on the current state without worrying about the past.
 
 ## Markov Decision Process
 Markov Decision Process (MDP) provides a mathematical framework for modeling decision making in situations where the outcome is partly random, partly under the control of a decision maker. An MDP is defined by the following components:
@@ -110,8 +110,8 @@ Typically, we consider the infinite horizon setting. There is also a proof that 
 ### The best policy for MDP
 There is a theorem:
 
-> In a situation that the discount factor $\gamma \lt 1$, while the state and action space are finite and the horizon is infinite, there exists a deterministic 
-and stationary policy $\pi^\ast$ that is optimal, which means for any policy $\pi$, we have $V^{\pi^\ast}(s) \geq V^{\pi}(s)$. 
+> In a situation that the discount factor $\gamma \lt 1$, while the state and action space are finite and the horizon is infinite, there exists a deterministic
+and stationary policy $\pi^\ast$ that is optimal, which means for any policy $\pi$, we have $V^{\pi^\ast}(s) \geq V^{\pi}(s)$.
 
 Proof: *Puterman, Martin L. Markov decision processes: discrete stochastic dynamic programming. John Wiley & Sons, 2014.*
 
@@ -164,7 +164,7 @@ $$
 \rho^{\pi}(s,a) = \mu(s') \pi(a'|s') + \gamma \sum_{s} p^{\pi}(s'|s)\rho^{\pi}(s,a)
 $$
 
-Pay attention that the whole process is flow conservation.Because the state-action occupancy measure is the expected discounted number of times that the agent takes action $a$ in state $s$, so the total flow into state $s$ must equal the total flow out of state $s$. This is why we have the flow conservation constraint in the computation of occupancy measure.
+Pay attention that the whole process is flow conservation. Because the state-action occupancy measure is the expected discounted number of times that the agent takes action $a$ in state $s$, so the total flow into state $s$ must equal the total flow out of state $s$. This is why we have the flow conservation constraint in the computation of occupancy measure.
 
 ## Some Properties of Occupancy Measure
 Obviously, from the definition of the measures:
@@ -188,7 +188,7 @@ $$
 $$
 
 ## Value function and Q function
-The value function is used to evaluate a state or a state-action pair, given a policy $\pi$. 
+The value function is used to evaluate a state or a state-action pair, given a policy $\pi$.
 
 The state value function is usually know as value function, which is defined as follows:
 $$
@@ -200,7 +200,7 @@ $$
 Q^{\pi}(s, a) = \underset{a' \sim \pi(\cdot|s'),\, s'' \sim p(\cdot|s',a')}{\mathbb{E}} \left[R(s, a) + \gamma Q^{\pi}(s', a')\right]
 $$
 
---- 
+---
 
 Obviously, we have the relationship between the value function and the Q function:
 $$
