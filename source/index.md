@@ -17,6 +17,8 @@ This site is a place where I write down what I learn, what I find interesting, a
 
 The name *Two and One* was picked at random when setting up the site. No deep meaning.
 
+The avatar is a cat in a box. The picture came with a caption, and it has stayed with me: *Today is an ordinary day. Nothing is owed, nothing is due. The litter box has been freshened, the bowl refilled, and the box — that particular box — has finally arrived. You step in, settle down, and survey the world from its cardboard walls. Outside, things are presumably happening. In here, it is enough.* That kind of quiet — where the present moment asks nothing more of you — is something I find worth chasing.
+
 Navigate via the **Blog** menu above to browse all posts, or use the sidebar for recent entries, archives, and tags.
 
 ## Colophon

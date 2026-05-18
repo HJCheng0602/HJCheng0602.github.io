@@ -4,7 +4,7 @@ toc: true
 logo:
     text: Two and One
 head:
-    favicon: /img/favicon.ico
+    favicon: /img/favicon.png
     manifest:
         name:
         short_name:
@@ -91,7 +91,7 @@ widgets:
         author: Jincheng Han
         author_title: PKU · Intelligence Science & Technology
         location: Beijing, China
-        avatar: /img/avatar.jpg
+        avatar: /img/avatar.png
         avatar_rounded: true
         gravatar:
         follow_link: https://github.com/HJCheng0602

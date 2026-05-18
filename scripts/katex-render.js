@@ -39,17 +39,12 @@ hexo.extend.filter.register('after_render:html', function(html) {
     }
   );
 
-  // Inline math: $...$ within article content divs
-  // Guard: no newlines inside, not empty, not preceded/followed by $
+  // Inline math: $...$ anywhere in the HTML
+  // Guard: no newlines inside, no HTML tags (< excluded), not preceded/followed by $
   html = html.replace(
-    /(<div class="content">[\s\S]*?<\/div>)/g,
-    function(block) {
-      return block.replace(
-        /(?<!\$)\$(?!\$)([^$\n<]{1,300}?)(?<!\$)\$(?!\$)/g,
-        function(_, tex) {
-          return renderMath(decodeEntities(tex), false);
-        }
-      );
+    /(?<!\$)\$(?!\$)([^$\n<]{1,300}?)(?<!\$)\$(?!\$)/g,
+    function(_, tex) {
+      return renderMath(decodeEntities(tex), false);
     }
   );
 

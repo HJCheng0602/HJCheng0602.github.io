@@ -13,23 +13,15 @@ hexo.extend.filter.register('after_render:html', function(html, data) {
   const title = rawTitle.replace(/\s*[-|].*$/, '').trim()
     .replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-  // Extract dates from article-meta section (camelCase dateTime attribute)
   const metaMatch = html.match(/article-meta[^]*?<\/div>/);
-  function fmtDate(iso) {
-    if (!iso) return '—';
-    const dt = new Date(iso);
-    const mm = String(dt.getMonth() + 1).padStart(2, '0');
-    const dd = String(dt.getDate()).padStart(2, '0');
-    const yyyy = dt.getFullYear();
-    return `${mm}-${dd}-${yyyy}`;
-  }
 
+  // article-meta.js already replaced <time dateTime="..."> with formatted MM-DD-YYYY strings,
+  // so just grab those directly from the meta section.
   let posted = '—', updated = '—';
   if (metaMatch) {
-    const metaHtml = metaMatch[0];
-    const times = [...metaHtml.matchAll(/dateTime="([^"]+)"/g)];
-    if (times[0]) posted  = fmtDate(times[0][1]);
-    if (times[1]) updated = fmtDate(times[1][1]);
+    const dates = [...metaMatch[0].matchAll(/(\d{2}-\d{2}-\d{4})/g)];
+    if (dates[0]) posted  = dates[0][1];
+    if (dates[1]) updated = dates[1][1];
     else updated = posted;
   }
 
