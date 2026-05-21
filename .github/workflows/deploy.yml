@@ -27,7 +27,7 @@ jobs:
         run: npm install
 
       - name: Build Hexo site
-        run: npm run build
+        run: npx hexo clean && npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

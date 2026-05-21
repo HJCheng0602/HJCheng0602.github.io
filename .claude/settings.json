@@ -6,7 +6,9 @@
       "Bash(curl -s http://localhost:4002/blog/Foundation-of-Reinforcement-learning-I/)",
       "Bash(curl -s http://localhost:4002/blog/Foundation-of-Reinforcement-learning-II/)",
       "Read(//tmp/**)",
-      "Bash(npx hexo *)"
+      "Bash(npx hexo *)",
+      "Bash(node -e ' *)",
+      "Bash(xargs ls -la)"
     ]
   }
 }

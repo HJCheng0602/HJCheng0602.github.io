@@ -153,8 +153,13 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.72rem;
 }
 
-/* ── Sidebar widths ──────────────────────────────────────────────────── */
+/* ── Layout widths ───────────────────────────────────────────────────── */
 @media screen and (min-width: 1280px) {
+  /* Widen the outer container beyond Bulma's 1344px cap */
+  .container {
+    max-width: 1560px !important;
+  }
+  /* Sidebars: fixed width */
   .column-left {
     width: 20% !important;
     flex: none !important;
@@ -162,6 +167,12 @@ h1, h2, h3, h4, h5, h6 {
   .column-right {
     width: 20% !important;
     flex: none !important;
+  }
+  /* Main column: fill the remaining 60% instead of Bulma's fixed 50% */
+  .column-main {
+    flex: 1 1 0 !important;
+    width: auto !important;
+    max-width: none !important;
   }
 }
 
@@ -392,4 +403,430 @@ code, pre, kbd,
 .v .vcount {
   font-size: 0.9rem;
   color: #7a7a7a;
+}
+
+/* ── Paper card (readings posts) ─────────────────────────────────────── */
+.paper-card {
+  background: #f5f7fb;
+  border-left: 3px solid #3273dc;
+  padding: 1rem 1.3rem;
+  margin-bottom: 2rem;
+  border-radius: 0 4px 4px 0;
+}
+.paper-venue {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #3273dc;
+  margin-bottom: 0.3rem;
+}
+.paper-title {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.25rem;
+  line-height: 1.35;
+}
+.paper-authors {
+  font-size: 0.82rem;
+  color: #666;
+  margin-bottom: 0.55rem;
+}
+.paper-links {
+  display: flex;
+  gap: 1.2rem;
+}
+.paper-links a {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #3273dc;
+  text-decoration: none;
+}
+.paper-links a i {
+  margin-right: 0.25em;
+}
+.paper-links a:hover {
+  text-decoration: underline;
+}
+
+/* ── References section ───────────────────────────────────────────────── */
+.post-references {
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+.references-heading {
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  color: #999 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 0.6rem !important;
+}
+.post-references ol {
+  padding-left: 1.4rem;
+  margin: 0 !important;
+}
+.post-references li {
+  font-size: 0.8rem;
+  color: #777;
+  line-height: 1.6;
+  margin-bottom: 0.25rem;
+}
+
+/* ── Post list ({% post_list category %} tag) ────────────────────────── */
+.post-list-item {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.post-list-item:last-child {
+  border-bottom: none;
+}
+.post-list-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+.post-list-title {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #222;
+  text-decoration: none;
+}
+.post-list-title:hover {
+  color: #3273dc;
+}
+.post-list-date {
+  font-size: 0.75rem;
+  color: #aaa;
+  white-space: nowrap;
+  font-family: 'PT Serif', serif;
+}
+.post-list-desc {
+  font-size: 0.82rem;
+  color: #777;
+  margin: 0.2rem 0 0.3rem !important;
+}
+.post-list-tags {
+  margin-top: 0.25rem;
+}
+.post-list-tags .tag {
+  font-size: 0.7rem;
+  margin-right: 0.25rem;
+}
+.post-list-empty {
+  color: #aaa;
+  font-style: italic;
+}
+
+/* Force light color scheme regardless of system preference */
+html { color-scheme: light only; }
+
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #1e2127;
+  color: #abb2bf;
+}
+
+/* Navbar */
+html.dark .navbar-main {
+  background-color: #21252b;
+  box-shadow: 0 1px 0 #3e4451;
+}
+html.dark .navbar-item,
+html.dark a.navbar-item,
+html.dark .navbar-link {
+  color: #abb2bf;
+}
+html.dark a.navbar-item:hover,
+html.dark .navbar-item:hover {
+  background-color: #3e4451 !important;
+  color: #fff;
+}
+
+/* Cards and widgets */
+html.dark .card {
+  background-color: #282c34;
+  box-shadow: none;
+  border: 1px solid #3e4451;
+}
+html.dark .card-header {
+  border-bottom: 1px solid #3e4451;
+  box-shadow: none;
+}
+html.dark .card-header-title,
+html.dark .card-content {
+  color: #abb2bf;
+}
+html.dark .widget .menu-label {
+  color: #5c6370;
+}
+html.dark .widget .menu-list a {
+  color: #abb2bf;
+}
+html.dark .widget .menu-list a:hover {
+  background-color: #3e4451;
+  color: #61afef;
+}
+html.dark .widget .menu-list a.is-active {
+  background-color: #3e4451;
+  color: #61afef;
+}
+html.dark .widget .tag,
+html.dark .widget .tag.is-light {
+  background-color: #3e4451;
+  color: #abb2bf;
+}
+
+/* Profile widget */
+html.dark .widget[data-type="profile"] .title {
+  color: #c8cdd5;
+}
+html.dark .widget[data-type="profile"] .is-size-6 {
+  color: #5c6370 !important;
+}
+html.dark .widget[data-type="profile"] .heading {
+  color: #5c6370;
+}
+html.dark .widget[data-type="profile"] .level-item a {
+  color: #abb2bf;
+}
+html.dark .widget[data-type="profile"] .level-item a:hover {
+  color: #61afef;
+}
+
+/* Article */
+html.dark .article .title {
+  color: #c8cdd5 !important;
+}
+html.dark .article .content {
+  color: #abb2bf;
+}
+html.dark .article-meta {
+  color: #5c6370 !important;
+}
+html.dark .article-meta .meta-icon {
+  color: #5c6370;
+}
+html.dark .article-meta a {
+  color: #5c6370 !important;
+}
+
+/* Headings — !important to beat existing color: #111 */
+html.dark h1, html.dark h2, html.dark h3,
+html.dark h4, html.dark h5, html.dark h6 {
+  color: #c8cdd5 !important;
+}
+html.dark .title {
+  color: #c8cdd5 !important;
+}
+html.dark .subtitle {
+  color: #5c6370 !important;
+}
+
+/* Links */
+html.dark .content a,
+html.dark a {
+  color: #61afef;
+}
+html.dark .content a:hover,
+html.dark a:hover {
+  color: #528bff;
+}
+
+/* Dividers */
+html.dark hr {
+  background-color: #3e4451;
+}
+
+/* Tags */
+html.dark .tag,
+html.dark .tag.is-light {
+  background-color: #3e4451;
+  color: #abb2bf;
+}
+html.dark .tags .tag:hover {
+  color: #61afef;
+}
+
+/* Footer */
+html.dark .footer {
+  background-color: #21252b;
+  color: #5c6370;
+}
+html.dark .footer a,
+html.dark .footer a:hover {
+  color: #5c6370;
+}
+
+/* Post citation */
+html.dark .post-citation {
+  background: #21252b;
+}
+html.dark .post-citation .citation-title {
+  color: #abb2bf;
+}
+html.dark .post-citation .citation-url a {
+  color: #61afef;
+}
+html.dark .post-citation .citation-label {
+  color: #5c6370;
+}
+html.dark .post-citation .citation-value {
+  color: #abb2bf;
+}
+
+/* Inline code */
+html.dark .content p > code,
+html.dark .content li > code {
+  background: #3e4451;
+  color: #e06c75;
+}
+
+/* ── Code blocks: One Dark Pro syntax colors ──────────────────────────── */
+html.dark .highlight,
+html.dark .highlight pre {
+  background-color: #282c34;
+  color: #abb2bf;
+}
+html.dark .highlight .gutter pre {
+  background-color: #282c34;
+  color: #4b5263;
+  border-right: 1px solid #3e4451;
+  padding-right: 1.2rem;
+}
+html.dark figure.highlight figcaption,
+html.dark figure.highlight figcaption a {
+  background-color: #21252b;
+  color: #5c6370;
+}
+html.dark .highlight .clipboard-btn {
+  color: #5c6370;
+  background: transparent;
+  border-color: #3e4451;
+}
+html.dark .highlight .clipboard-btn:hover {
+  color: #abb2bf;
+}
+
+html.dark .highlight .keyword          { color: #c678dd; }
+html.dark .highlight .type             { color: #e5c07b; }
+html.dark .highlight .number           { color: #d19a66; }
+html.dark .highlight .string           { color: #98c379; }
+html.dark .highlight .comment          { color: #5c6370; font-style: italic; }
+html.dark .highlight .function         { color: #61afef; }
+html.dark .highlight .built_in         { color: #56b6c2; }
+html.dark .highlight .literal          { color: #d19a66; }
+html.dark .highlight .title            { color: #61afef; }
+html.dark .highlight .attr             { color: #e06c75; }
+html.dark .highlight .attribute        { color: #e06c75; }
+html.dark .highlight .variable         { color: #e06c75; }
+html.dark .highlight .meta             { color: #abb2bf; }
+html.dark .highlight .name             { color: #e06c75; }
+html.dark .highlight .tag              { color: #e06c75; }
+html.dark .highlight .selector-tag    { color: #e06c75; }
+html.dark .highlight .selector-class  { color: #98c379; }
+html.dark .highlight .regexp           { color: #98c379; }
+html.dark .highlight .symbol           { color: #61afef; }
+html.dark .highlight .link             { color: #61afef; text-decoration: underline; }
+html.dark .highlight .addition         { color: #98c379; }
+html.dark .highlight .deletion         { color: #e06c75; }
+html.dark .highlight .operator         { color: #56b6c2; }
+html.dark .highlight .property         { color: #e06c75; }
+html.dark .highlight .params           { color: #abb2bf; }
+html.dark .highlight .class .title     { color: #e5c07b; }
+html.dark .highlight .punctuation      { color: #abb2bf; }
+
+/* ── Waline dark mode ─────────────────────────────────────────────────── */
+/* Set Waline CSS variables at root so they cascade into the shadow/iframe */
+html.dark {
+  --waline-color: #abb2bf;
+  --waline-bgcolor: #282c34;
+  --waline-bgcolor-light: #21252b;
+  --waline-bgcolor-hover: #3e4451;
+  --waline-border-color: #3e4451;
+  --waline-border: 1px solid #3e4451;
+  --waline-disable-bgcolor: #3e4451;
+  --waline-disable-color: #5c6370;
+  --waline-theme-color: #61afef;
+  --waline-active-color: #61afef;
+  --waline-info-bgcolor: #21252b;
+  --waline-info-color: #5c6370;
+  --waline-bq-color: #3e4451;
+}
+/* Waline v3 (.wl-*) direct overrides */
+html.dark .wl-panel {
+  background: #21252b !important;
+  border-color: #3e4451 !important;
+}
+html.dark .wl-header {
+  background: #21252b !important;
+  border-bottom-color: #3e4451 !important;
+}
+html.dark .wl-header-item input {
+  color: #abb2bf !important;
+  background: transparent !important;
+}
+html.dark .wl-editor {
+  background: #21252b !important;
+  color: #abb2bf !important;
+}
+html.dark .wl-footer {
+  background: #21252b !important;
+  border-top-color: #3e4451 !important;
+}
+html.dark .wl-comment {
+  background: #282c34 !important;
+  border-bottom-color: #3e4451 !important;
+}
+html.dark .wl-comment-body {
+  color: #abb2bf !important;
+}
+html.dark .wl-btn {
+  border-color: #3e4451 !important;
+  color: #abb2bf !important;
+  background: #3e4451 !important;
+}
+html.dark .wl-btn.primary {
+  background: #61afef !important;
+  border-color: #61afef !important;
+  color: #282c34 !important;
+}
+html.dark #comments .card-content h3.title {
+  color: #c8cdd5 !important;
+  border-bottom-color: #3e4451;
+}
+/* Legacy Waline v2 (.v) */
+html.dark .v .vlist .vcard {
+  border-bottom-color: #3e4451;
+}
+html.dark .v .vlist .vcard .vcontent {
+  color: #abb2bf;
+}
+html.dark .v .vlist .vcard .vhead .vavatar img {
+  border-color: #3e4451;
+}
+
+/* ── Search overlay ───────────────────────────────────────────────────── */
+html.dark .insight-search-result,
+html.dark .search-result-container {
+  background-color: #282c34;
+  border-color: #3e4451;
+}
+html.dark .insight-search-result .search-result-item {
+  border-bottom-color: #3e4451;
+}
+html.dark .insight-search-result .search-result-item a {
+  color: #61afef;
+}
+html.dark .insight-search-result .search-result-item p {
+  color: #abb2bf;
 }
