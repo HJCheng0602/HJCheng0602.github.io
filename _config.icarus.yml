@@ -2,7 +2,7 @@ version: 5.1.0
 variant: default
 toc: true
 logo:
-    text: lnicenoj
+    text: Inicenoj
 head:
     favicon: /img/favicon.png
     manifest:
@@ -139,7 +139,7 @@ plugins:
         tracking_id:
     bing_webmaster:
         tracking_id: 7F937E121EE219657A073E5E99C17078
-    busuanzi: false
+    busuanzi: true
     cnzz:
         id:
         web_id:
@@ -151,7 +151,7 @@ plugins:
         policyLink: https://www.cookiesandyou.com/
     gallery: false
     google_analytics:
-        tracking_id:
+        tracking_id: G-GXBXVSHCHK
     katex: true
     mathjax: false
     outdated_browser: false

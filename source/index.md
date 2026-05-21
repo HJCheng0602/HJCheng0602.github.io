@@ -1,5 +1,5 @@
 ---
-title: lnicenoj
+title: Inicenoj
 date: 2024-08-05
 ---
 
@@ -15,7 +15,7 @@ I am an undergraduate student majoring in Intelligence Science and Technology at
 
 This site is a place where I write down what I learn, what I find interesting, and occasional thoughts. Posts are mostly reading notes on ML Systems papers and topics. Some posts are in Chinese, some in English.
 
-The name *lnicenoj* was given by my girlfriend, related to the pictographic form of my name.
+The name *Inicenoj* was given by my girlfriend, related to the pictographic form of my name.
 
 The avatar is a cat in a box. The picture came with a caption, and it has stayed with me: *Today is an ordinary day. Nothing is owed, nothing is due. The litter box has been freshened, the bowl refilled, and the box — that particular box — has finally arrived. You step in, settle down, and survey the world from its cardboard walls. Outside, things are presumably happening. In here, it is enough.* That kind of quiet — where the present moment asks nothing more of you — is something I find worth chasing.
 
