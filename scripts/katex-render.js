@@ -28,6 +28,13 @@ function renderMath(tex, displayMode) {
 }
 
 hexo.extend.filter.register('after_render:html', function(html) {
+  // Highlight.js splits CUDA <<<>>> into spaced tokens — merge them back inside code blocks
+  html = html.replace(/<(?:pre|code)[^>]*>[\s\S]*?<\/(?:pre|code)>/g, function(block) {
+    return block
+      .replace(/(&lt;) (?=&lt;)/g, '$1')
+      .replace(/(&gt;) (?=&gt;)/g, '$1');
+  });
+
   // Display math: opening $$ is preceded by <br> or <p>
   //               closing $$ is followed by <br> or </p>
   html = html.replace(
