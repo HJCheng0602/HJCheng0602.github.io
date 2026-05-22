@@ -22,9 +22,9 @@ I am an undergraduate student majoring in Intelligence Science and Technology at
 
 ## Tools
 
-**Productivity:** Chrome, Typora  
-**Development:** VS Code, Neovim  
-**Environment:** Arch Linux, Ubuntu 24.04, macOS, Windows 11
+**Productivity**: Chrome, Typora  
+**Development**: VS Code, Neovim  
+**Environment**: Arch Linux, Ubuntu 24.04, macOS, Windows 11
 
 ## Social
 
