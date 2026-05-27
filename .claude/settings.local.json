@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:leimao.github.io)",
+      "Bash(pnpm build *)",
+      "Bash(pnpm dev *)",
+      "Bash(curl -s http://localhost:4321/)",
+      "Bash(npx --yes astro check)",
+      "Read(//home/jincheng/.nvm/versions/node/**)",
+      "Read(//home/jincheng/.local/share/**)",
+      "Bash(fnm list *)",
+      "Bash(git checkout *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(cp -r src/content/blog /tmp/blog_backup)",
+      "Bash(cp -r src/assets/headphoto.jpg /tmp/headphoto.jpg)",
+      "Bash(cp -r src/assets/avatar.png /tmp/avatar.png)",
+      "Bash(cp -r public/favicon /tmp/favicon)",
+      "Bash(python3 /home/jincheng/data/HJCheng0602.github.io/migrate_posts.py)",
+      "Bash(python3 -)",
+      "Bash(python3 -c \"import sys; html = sys.stdin.read\\(\\); print\\('custom.css' in html, 'Who Am I' in html, 'Noto' in html\\)\")",
+      "Bash(python3 -c ' *)"
+    ]
+  }
+}
