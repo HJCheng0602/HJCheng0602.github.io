@@ -16,7 +16,7 @@ categories:
 上上周五写了 topk kernel 的第一版，应该是 index 错误导致我查了一下午 bug，想要提前写完一些 kernel 然后去美美参加 Optiver FutureFocus 的心情荡然无存。本周回来之后，本来不打算继续写 topk kernel 了，但 mt 还是建议我去写一下 topk kernel，因为 topk 包含了一些很重要的知识点，于是我便开始着手优化该 kernel，其中版本迭代和性能提升的过程也很有代表性，我决定写一篇博客记录一下 topk kernel 的优化过程。
 
 这次优化的目标场景还是比较固定的：
-
+```
 input:  一维 fp32 tensor, shape = [N]
 N:      32M ~ 256M
 K:      32
@@ -24,14 +24,16 @@ output: 只返回 topk values
 order:  descending
 GPU:    NVIDIA B300
 Torch:  2.11.0 + CUDA 13.0
+```
 
 这个场景和 PyTorch torch.topk 并不完全相同。PyTorch 的 topk 是一个通用算子，需要支持多维 tensor、不同 dtype、任意 K、返回 values 和 indices，以及更多边界情况。而这里是一个高度特化的 kernel：一维、fp32、K=32、values-only。因此本文中的对比主要是为了分析优化过程，而不是说这个 kernel 可以直接替代通用 topk。
 
 最后的性能从最早大约 50GB/s，一路优化到：
-
+```
 N = 268,435,456
 time ≈ 0.526 ms
 effective input bandwidth ≈ 2.0 TB/s
+```
 
 整个过程经历了多个版本：merge insert、local bitonic sort、coalesced load、shared memory padding、merge 函数改写、radix select 尝试、multi-block stage2 reduction，以及最后的 SoA layout 实验。每一次明显的性能变化背后都对应一个具体瓶颈的解决，而不是简单地“多加几个 pragma”产生的free fruit。
 
