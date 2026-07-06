@@ -7,7 +7,6 @@ tags:
     - kernel optimization
     - topk
 categories:
-    - blog
     - practice
 ---
 
@@ -42,7 +41,7 @@ effective input bandwidth ≈ 2.0 TB/s
 TopK 的基本目标是从 N 个数里找出最大的 K 个数。在 N 很大、K=32 很小的情况下，完整排序整个 input 显然是不划算的。我们只需要前 32 个值，不关心剩余元素的相对顺序。
 
 因此整个 kernel 自始至终便采用两阶段结构：
-
+```
 stage1:
   每个 block 处理 input 的一个 tile
   每个 block 输出自己的 top32
@@ -50,15 +49,15 @@ stage1:
 stage2:
   合并所有 block 的 top32
   得到全局 top32
-
+```
 也就是：
-
+```
 input[N]
   ↓
 partial_topk[num_blocks, 32]
   ↓
 global_topk[32]
-
+```
 这个主要的架构一直都没有改变。本文所做的优化主要集中在以下几个问题：
 
 1. 每个 thread 如何处理自己的元素？
@@ -744,4 +743,3 @@ benchmark 和 profiler 是否支持这个判断？
 - https://zhuanlan.zhihu.com/p/1887974210787312715
 - https://leimao.github.io/blog/CPU-TopK-Algorithm/
 - Li, Y. et al. RadiK: Scalable and Optimized GPU-Parallel Radix Top-K Selection. in Proceedings of the 38th ACM International Conference on Supercomputing 537–548 (2024). doi:10.1145/3650200.3656596.
-
