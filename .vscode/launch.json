@@ -2,8 +2,8 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "command": "./node_modules/.bin/astro dev",
-      "name": "Development server",
+      "command": "npm run preview:node20",
+      "name": "Hexo preview",
       "request": "launch",
       "type": "node-terminal"
     }

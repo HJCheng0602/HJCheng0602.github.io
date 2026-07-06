@@ -2,8 +2,14 @@
   "name": "hexo-site",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "scripts": {
     "build": "hexo generate",
+    "preview": "hexo server --config _config.yml,_config.local.yml --port 4000 --draft --watch",
+    "preview:node20": "npx -p node@20.19.0 node node_modules/hexo/bin/hexo server --config _config.yml,_config.local.yml --port 4000 --draft --watch",
+    "preview:prod": "hexo server --config _config.yml --port 4000 --watch",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
     "server": "hexo server",
