@@ -842,12 +842,83 @@ figure.highlight figcaption {
   75% { transform: translateX(-3px) rotate(-2deg); }
 }
 
-/* ── Small screens: keep usable, not optimized ───────────────── */
+/* ── Small screens: simplified desktop metaphor ──────────────── */
 @media (max-width: 720px) {
+  /* Menubar: keep Apple + app name on the left, search + clock on the right */
   .menu-items { display: none; }
+  .menu-root[data-menu="file"],
+  .menu-root[data-menu="edit"],
+  .menu-root[data-menu="view"],
+  .menu-root[data-menu="go"],
+  .menu-root[data-menu="window"],
+  .menu-root[data-menu="help"],
+  .menu-root[data-menu="wifi"],
+  .menu-root[data-menu="battery"] { display: none; }
+  .menu-dropdown, .menu-panel { max-width: calc(100vw - 24px); }
+
+  /* Desktop icons: horizontal scrollable row at the top */
+  .desktop-icons {
+    top: 10px;
+    left: 12px;
+    right: 12px;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .desktop-icons::-webkit-scrollbar { display: none; }
+  .desk-icon { width: 68px; flex: none; }
+  .desk-icon .icon-img { width: 48px; height: 48px; }
+  .desk-icon .icon-label { font-size: .68rem; }
+
+  /* Widgets: vertical stack with a single outer scroll */
+  .desktop-widgets {
+    top: 108px;
+    left: 12px;
+    right: 12px;
+    bottom: 76px;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .widget-col { width: 100%; flex: none; }
+  .widget-timeline { width: 100%; }
+  .widget-tags { flex: none; }
+  .widget-body { overflow: visible; }
+
+  /* Dock: smaller icons, horizontally scrollable if too wide */
+  .dock { max-width: calc(100vw - 16px); overflow-x: auto; gap: 5px; padding: 6px 8px; }
+  .dock-icon { width: 40px; height: 40px; font-size: 1.15rem; }
+  .dock-item:hover .dock-icon { transform: none; margin: 0; }
+
+  /* Windows: always fullscreen, close button only, no dragging */
+  .window {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 0;
+    transform: none !important;
+  }
+  .window-titlebar { cursor: default; }
+  .tl-min, .tl-max { display: none; }
+  .window-titlebar-spacer { width: 12px; }
+
+  /* Article page: TOC becomes a scrollable block above the content */
+  .article-split { flex-direction: column; }
+  .article-toc-sidebar {
+    order: -1;
+    width: 100%;
+    max-height: 150px;
+    border-left: none;
+    border-bottom: 1px solid rgba(255, 255, 255, .07);
+    padding: 14px 20px;
+  }
+  .article-title { font-size: 1.5rem; }
   .article-body { padding: 22px 20px 44px; }
-  .article-window { width: calc(100vw - 20px); height: calc(100vh - 120px); top: 40px; }
-  .finder-window { left: 10px; width: calc(100vw - 20px); }
-  .desktop-icons { right: 10px; }
+  .content table { display: block; overflow-x: auto; }
+
+  /* Lock screen */
   .lock-time { font-size: 4rem; }
+  .lock-avatar { width: 60px; height: 60px; }
 }

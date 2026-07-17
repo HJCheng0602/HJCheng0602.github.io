@@ -61,6 +61,8 @@
 
     bar.addEventListener('pointerdown', function (e) {
       if (e.target.closest('.tl') || win.classList.contains('maximized')) return;
+      // Windows are forced fullscreen on small screens; dragging is disabled.
+      if (window.matchMedia('(max-width: 720px)').matches) return;
       e.preventDefault();
       dragging = true;
       bringToFront(win);
@@ -123,8 +125,10 @@
   });
 
   /* ── Desktop icons: double-click opens a Finder window ─────── */
+  /* Touch devices (coarse pointer) use a single tap instead.     */
+  var openEvt = window.matchMedia('(pointer: coarse)').matches ? 'click' : 'dblclick';
   document.querySelectorAll('[data-open-window]').forEach(function (el) {
-    el.addEventListener('dblclick', function () {
+    el.addEventListener(openEvt, function () {
       var win = document.getElementById(el.getAttribute('data-open-window'));
       if (!win) return;
       win.hidden = false;
@@ -135,7 +139,7 @@
 
   /* ── Desktop icons: double-click navigates to a URL ────────── */
   document.querySelectorAll('[data-open-url]').forEach(function (el) {
-    el.addEventListener('dblclick', function () {
+    el.addEventListener(openEvt, function () {
       window.location.href = el.getAttribute('data-open-url');
     });
   });
