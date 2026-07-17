@@ -1,0 +1,95 @@
+# macOS desktop theme configuration
+
+# Desktop identity
+user_name: jincheng
+avatar: /img/avatar.png
+
+# Menu bar pseudo app name shown on index/desktop pages
+finder_name: Finder
+
+# Topic folders on the desktop. Matching is by post slug (file name without .md).
+# - posts: exact slug list
+# - match: regex tested against slug
+# Unmatched posts fall into the auto "Misc" folder.
+topic_folders:
+  - name: 3D Reconstruction
+    posts:
+      - VGGT
+      - vggt_new
+      - SLAM3R
+      - SLAM3R_online edit
+      - Fast3R
+      - bloc3r
+      - mst3r
+      - SF3D
+      - slam_former
+      - 3dreconseries
+  - name: RL Foundations
+    match: ^Foundation-of-Reinforcement-learning
+  - name: ML Systems
+    posts:
+      - Paged-attention-kernel-optimization
+      - Paged-attention-kernel-optimization-II
+      - TopK-kernel-optimization
+      - Streams-and-Concurrency-on-CUDA
+      - TensorParallel
+      - MoE-vs-Dense-Models-in-Inference
+      - nanopd
+  - name: HPC Games
+    match: ^HPCGames
+  - name: Basics
+    posts:
+      - transformer
+      - ViT_transformer
+
+# Dock items. icon keys map to inline SVG in partials/dock.ejs
+dock:
+  - name: Finder
+    icon: finder
+    url: /archives
+    action: all-posts
+  - name: Readings
+    icon: book
+    url: /readings/
+  - name: Projects
+    icon: rocket
+    url: /projects/
+  - name: Publications
+    icon: grad
+    url: /publications/
+  - name: Links
+    icon: link
+    url: /links/
+  - name: About
+    icon: person
+    url: /about/
+  - name: Trash
+    icon: trash
+    url: '#'
+    action: trash
+
+# External assets
+fontawesome: https://use.fontawesome.com/releases/v6.5.2/css/all.css
+katex_css: https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css
+hljs_css: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/atom-one-dark.min.css
+
+# Profile card shown on the desktop (top of the left widget column)
+profile:
+  name: Jincheng Han
+  subtitle: PKU · Intelligence Science & Technology
+  location: Beijing, China
+
+# Social links shown in the profile card
+social:
+  github: https://github.com/HJCheng0602
+  zhihu: https://www.zhihu.com/people/42-3-38-8-46
+  x: https://x.com/HJCheng0602
+  email: hanjincheng_eecs@stu.pku.edu.cn
+  xiaohongshu: https://www.xiaohongshu.com/user/profile/66d5602e000000001d023f65
+
+# Desktop wallpapers (files in source/img/wallpapers/, .jpg). Rotated daily.
+wallpapers:
+  - aurora
+  - mountains
+  - fluid
+  - night

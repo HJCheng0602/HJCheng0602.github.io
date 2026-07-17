@@ -1,0 +1,164 @@
+<%
+var folders = topic_folders();
+var allPosts = site.posts.toArray().sort(function(a, b){ return b.date - a.date; });
+// Group posts by year-month for the Timeline widget
+var timelineGroups = [];
+var ymSeen = {};
+allPosts.forEach(function(p){
+  var ym = p.date.format('YYYY-MM');
+  if (!ymSeen[ym]) { ymSeen[ym] = { ym: ym, posts: [] }; timelineGroups.push(ymSeen[ym]); }
+  ymSeen[ym].posts.push(p);
+});
+// All tags (most-used first) for the Tags widget / tag filter windows
+var tags = site.tags.toArray().sort(function(a, b){ return b.length - a.length; });
+// Profile card data
+var profile = theme.profile || {};
+var social = theme.social || {};
+var postCount = site.posts.length;
+var catCount = site.categories.length;
+var tagCount = site.tags.length;
+%>
+<!-- Lock screen -->
+<div class="lockscreen" id="lockscreen" role="button" aria-label="Log in">
+  <div class="lock-top">
+    <div class="lock-date" id="lock-date"></div>
+    <div class="lock-time" id="lock-time"></div>
+  </div>
+  <div class="lock-user">
+    <img class="lock-avatar" src="<%= theme.avatar %>" alt="avatar">
+    <div class="lock-name"><%= theme.user_name %></div>
+    <div class="lock-hint">Click to log in</div>
+  </div>
+</div>
+
+<!-- Desktop icons -->
+<div class="desktop-icons">
+  <% folders.forEach(function(f, i){ %>
+    <button class="desk-icon" data-open-window="finder-topic-<%= i %>" aria-label="Open <%= f.name %>">
+      <span class="icon-img"><%- partial('partials/icon', {name: 'folder'}) %></span>
+      <span class="icon-label"><%= f.name %></span>
+    </button>
+  <% }) %>
+  <button class="desk-icon" data-open-window="welcome-window" aria-label="Open Welcome.txt">
+    <span class="icon-img"><%- partial('partials/icon', {name: 'txt'}) %></span>
+    <span class="icon-label">Welcome.txt</span>
+  </button>
+</div>
+
+<!-- Desktop widgets: left column (Profile + Tags) + right column (Timeline) -->
+<aside class="desktop-widgets">
+  <div class="widget-col">
+    <div class="widget widget-profile">
+      <div class="profile-card">
+        <img class="profile-avatar" src="<%= theme.avatar %>" alt="avatar">
+        <div class="profile-name"><%= profile.name || config.author %></div>
+        <% if (profile.subtitle) { %><div class="profile-subtitle"><%= profile.subtitle %></div><% } %>
+        <% if (profile.location) { %><div class="profile-location"><i class="fas fa-location-dot"></i><%= profile.location %></div><% } %>
+        <div class="profile-stats">
+          <div class="profile-stat"><span class="stat-num"><%= postCount %></span><span class="stat-label">Posts</span></div>
+          <div class="profile-stat"><span class="stat-num"><%= catCount %></span><span class="stat-label">Categories</span></div>
+          <div class="profile-stat"><span class="stat-num"><%= tagCount %></span><span class="stat-label">Tags</span></div>
+        </div>
+        <a class="profile-follow" href="<%- url_for('/about/') %>">Follow</a>
+        <div class="profile-social">
+          <% if (social.github) { %><a href="<%= social.github %>" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a><% } %>
+          <% if (social.zhihu) { %><a href="<%= social.zhihu %>" target="_blank" rel="noopener" title="知乎" class="social-text">知乎</a><% } %>
+          <% if (social.x) { %><a href="<%= social.x %>" target="_blank" rel="noopener" title="X"><i class="fab fa-x-twitter"></i></a><% } %>
+          <% if (social.email) { %><a href="mailto:<%= social.email %>" title="Email"><i class="fas fa-envelope"></i></a><% } %>
+          <% if (social.xiaohongshu) { %><a href="<%= social.xiaohongshu %>" target="_blank" rel="noopener" title="小红书" class="social-text">小红书</a><% } %>
+        </div>
+      </div>
+    </div>
+    <div class="widget widget-tags">
+      <div class="widget-head"><span class="widget-title">Tags</span></div>
+      <div class="widget-body tags-body">
+        <% tags.forEach(function(t, i){ %>
+          <button class="tag-chip" data-open-win="finder-tag-<%= i %>" aria-label="Filter by <%= t.name %>"><%= t.name %><span class="tag-count"><%= t.length %></span></button>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+  <div class="widget widget-timeline">
+    <div class="widget-head"><span class="widget-title">Timeline</span></div>
+    <div class="widget-body">
+      <% timelineGroups.forEach(function(g){ %>
+        <div class="tl-group">
+          <div class="tl-ym"><%= g.ym %></div>
+          <% g.posts.forEach(function(p){ %>
+            <a class="tl-item" href="<%- url_for(p.path) %>" title="<%= p.title %>">
+              <span class="tl-dot"></span>
+              <span class="tl-item-title"><%= p.title %></span>
+              <span class="tl-day"><%= p.date.format('MM-DD') %></span>
+            </a>
+          <% }) %>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</aside>
+
+<!-- Topic Finder windows -->
+<% folders.forEach(function(f, i){ %>
+<section class="window finder-window" id="finder-topic-<%= i %>" hidden
+         style="left:<%= 60 + i * 40 %>px; top:<%= 64 + i * 32 %>px;">
+  <%- partial('partials/window-titlebar', {winTitle: f.name}) %>
+  <div class="window-body">
+    <div class="finder-grid">
+      <% f.posts.forEach(function(p){ %>
+        <a class="finder-item" href="<%- url_for(p.path) %>">
+          <span class="icon-img"><%- partial('partials/icon', {name: 'md'}) %></span>
+          <span class="icon-label"><%= p.title %></span>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+  <div class="finder-statusbar"><%= f.posts.length %> items</div>
+</section>
+<% }) %>
+
+<!-- Tag filter Finder windows -->
+<% tags.forEach(function(t, i){ %>
+<section class="window finder-window" id="finder-tag-<%= i %>" hidden
+         style="left:<%= 90 + i * 34 %>px; top:<%= 72 + i * 28 %>px;">
+  <%- partial('partials/window-titlebar', {winTitle: '#' + t.name}) %>
+  <div class="window-body">
+    <div class="finder-grid">
+      <% t.posts.toArray().sort(function(a, b){ return b.date - a.date; }).forEach(function(p){ %>
+        <a class="finder-item" href="<%- url_for(p.path) %>">
+          <span class="icon-img"><%- partial('partials/icon', {name: 'md'}) %></span>
+          <span class="icon-label"><%= p.title %></span>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+  <div class="finder-statusbar"><%= t.posts.length %> items</div>
+</section>
+<% }) %>
+
+<!-- Welcome.txt window (home page content) -->
+<section class="window article-window" id="welcome-window" hidden>
+  <%- partial('partials/window-titlebar', {winTitle: 'Welcome.txt'}) %>
+  <div class="window-body">
+    <div class="article-body">
+      <div class="content">
+        <%- page.content %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- All-posts Finder window (Dock) -->
+<section class="window finder-window" id="finder-all-posts" hidden style="left:110px; top:56px;">
+  <%- partial('partials/window-titlebar', {winTitle: 'All Posts'}) %>
+  <div class="window-body">
+    <div class="finder-grid">
+      <% allPosts.forEach(function(p){ %>
+        <a class="finder-item" href="<%- url_for(p.path) %>">
+          <span class="icon-img"><%- partial('partials/icon', {name: 'md'}) %></span>
+          <span class="icon-label"><%= p.title %></span>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+  <div class="finder-statusbar"><%= allPosts.length %> items</div>
+</section>

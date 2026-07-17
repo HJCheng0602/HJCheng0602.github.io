@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="<%= config.language || 'en' %>">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%
+var pageTitle = page.title;
+if (!pageTitle) {
+  if (page.category) pageTitle = page.category;
+  else if (page.tag) pageTitle = page.tag;
+  else if (page.archive) pageTitle = 'Archives';
+}
+%>
+<title><% if (pageTitle) { %><%= pageTitle %> — <%= config.title %><% } else { %><%= config.title %><% } %></title>
+<meta name="description" content="<%= page.description || config.description || '' %>">
+<link rel="icon" href="/img/favicon.png">
+<link rel="stylesheet" href="<%= theme.fontawesome %>">
+<link rel="stylesheet" href="<%= theme.katex_css %>">
+<link rel="preconnect" href="https://fonts.loli.net" crossorigin>
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap">
+<link rel="stylesheet" href="/css/macos.css">
+</head>
+<body class="<%= page.layout === 'post' ? 'is-post' : '' %><%= page.layout === 'index' ? ' is-locked' : '' %>">
+<div class="wallpaper" data-wallpapers='<%- JSON.stringify(theme.wallpapers || []) %>' aria-hidden="true"></div>
+<%- partial('partials/menubar') %>
+<main class="desktop">
+  <%- body %>
+</main>
+<%- partial('partials/dock') %>
+<script src="/js/desktop.js"></script>
+</body>
+</html>

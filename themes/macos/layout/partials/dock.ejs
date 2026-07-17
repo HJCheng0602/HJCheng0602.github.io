@@ -1,0 +1,34 @@
+<%
+var faMap = {
+  book: 'fas fa-book-open',
+  rocket: 'fas fa-rocket',
+  grad: 'fas fa-graduation-cap',
+  link: 'fas fa-link',
+  person: 'fas fa-user',
+  trash: 'fas fa-trash-can'
+};
+%>
+<nav class="dock glass" aria-label="Dock">
+  <% (theme.dock || []).forEach(function(item){ %>
+    <a class="dock-item" href="<%= item.url %>" data-action="<%= item.action || '' %>" title="<%= item.name %>">
+      <span class="dock-icon dock-<%= item.icon %>">
+        <% if (item.icon === 'finder') { %>
+          <svg viewBox="0 0 48 48" width="100%" height="100%" aria-hidden="true">
+            <defs>
+              <linearGradient id="finder-g" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#5ac8fa"/><stop offset="1" stop-color="#0a84ff"/>
+              </linearGradient>
+            </defs>
+            <rect width="48" height="48" rx="11" fill="url(#finder-g)"/>
+            <path d="M24 4h13a11 11 0 0 1 11 11v18a11 11 0 0 1-11 11H24z" fill="#e8f4ff" opacity=".92"/>
+            <path d="M15 17v7M33 17v7" stroke="#0a3d91" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+            <path d="M14 31c6 4.5 14 4.5 20 0" stroke="#0a3d91" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+          </svg>
+        <% } else { %>
+          <i class="<%= faMap[item.icon] || 'fas fa-folder' %>"></i>
+        <% } %>
+      </span>
+      <span class="dock-tooltip"><%= item.name %></span>
+    </a>
+  <% }) %>
+</nav>

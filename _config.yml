@@ -54,7 +54,7 @@ time_format: HH:mm:ss
 updated_option: date
 per_page: 10
 pagination_dir: page
-theme: icarus
+theme: macos
 search:
   path: search.xml
   field: post

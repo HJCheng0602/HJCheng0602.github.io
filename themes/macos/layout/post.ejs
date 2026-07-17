@@ -1,0 +1,54 @@
+<%
+var cats = page.categories ? page.categories.toArray() : [];
+var tagList = page.tags ? page.tags.toArray() : [];
+var tocHtml = toc(page.content, {class: 'toc', list_number: false, max_depth: 3});
+var posted = mac_date(page.date);
+var updated = mac_date(page.updated || page.date);
+%>
+<article class="window article-window" data-close-back="1">
+  <%- partial('partials/window-titlebar', {winTitle: page.title}) %>
+  <div class="window-body article-split">
+    <div class="article-main">
+      <div class="article-body">
+        <h1 class="article-title"><%= page.title %></h1>
+        <div class="article-meta">
+          <span><i class="fas fa-calendar-alt meta-icon"></i><%= posted %></span>
+          <% if (page.updated && page.updated.valueOf() !== page.date.valueOf()) { %>
+            <span><i class="fas fa-calendar-check meta-icon"></i><%= updated %></span>
+          <% } %>
+          <% if (cats.length) { %>
+            <span><i class="fas fa-folder meta-icon"></i><a href="<%- url_for(cats[0].path) %>"><%= cats[0].name %></a></span>
+          <% } %>
+          <% if (page.min2read) { %>
+            <span><i class="fas fa-clock meta-icon"></i><%= page.min2read %> min read</span>
+          <% } %>
+        </div>
+        <div class="content">
+          <%- page.content %>
+        </div>
+        <div class="post-citation">
+          <p class="citation-title"><%= page.title %></p>
+          <p class="citation-url"><a href="<%= page.permalink %>"><%= page.permalink %></a></p>
+          <div class="citation-meta">
+            <div class="citation-col"><span class="citation-label">Author</span><span class="citation-value"><%= config.author %></span></div>
+            <div class="citation-col"><span class="citation-label">Posted on</span><span class="citation-value"><%= posted %></span></div>
+            <div class="citation-col"><span class="citation-label">Updated on</span><span class="citation-value"><%= updated %></span></div>
+          </div>
+        </div>
+        <% if (tagList.length) { %>
+          <div class="post-list-tags" style="margin-top:1.2rem;">
+            <% tagList.forEach(function(t){ %>
+              <a class="tag" href="<%- url_for(t.path) %>"><%= t.name %></a>
+            <% }) %>
+          </div>
+        <% } %>
+      </div>
+    </div>
+    <% if (tocHtml) { %>
+      <nav class="article-toc-sidebar" aria-label="Table of contents">
+        <div class="toc-title">Contents</div>
+        <%- tocHtml %>
+      </nav>
+    <% } %>
+  </div>
+</article>

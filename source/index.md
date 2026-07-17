@@ -1,6 +1,7 @@
 ---
 title: Inicenoj
 date: 2024-08-05
+layout: index
 ---
 
 ## Who Am I

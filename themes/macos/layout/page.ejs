@@ -1,0 +1,11 @@
+<section class="window article-window" data-close-back="1">
+  <%- partial('partials/window-titlebar', {winTitle: page.title || 'Page'}) %>
+  <div class="window-body">
+    <div class="article-body">
+      <h1 class="article-title"><%= page.title %></h1>
+      <div class="content">
+        <%- page.content %>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+<%
+// /archives is paginated by hexo-generator-archive (10 per page) — show all
+// posts in the Finder window instead; category/tag pages keep their own list.
+var posts = (page.category || page.tag)
+  ? page.posts.toArray().sort(function(a, b){ return b.date - a.date; })
+  : site.posts.toArray().sort(function(a, b){ return b.date - a.date; });
+var winTitle = page.archive ? 'All Posts' : (page.category || page.tag || 'Archives');
+%>
+<section class="window finder-window" data-close-back="1" style="left:90px; top:60px;">
+  <%- partial('partials/window-titlebar', {winTitle: winTitle}) %>
+  <div class="window-body">
+    <ul class="archive-list">
+      <% posts.forEach(function(p){ %>
+        <li>
+          <a class="archive-row" href="<%- url_for(p.path) %>">
+            <span class="archive-name"><%= p.title %></span>
+            <span class="archive-date"><%= mac_date(p.date) %></span>
+          </a>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+  <div class="finder-statusbar"><%= posts.length %> items</div>
+</section>
