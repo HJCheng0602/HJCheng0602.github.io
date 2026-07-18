@@ -105,6 +105,16 @@ var menus = [
       <div class="menu-panel glass panel-calendar" hidden>
         <div class="panel-title" id="cal-title"></div>
         <div class="cal-grid" id="cal-grid"></div>
+        <div class="panel-title notif-title">Notifications</div>
+        <div class="notif-list">
+          <% site.posts.toArray().sort(function(a, b){ return b.date - a.date; }).slice(0, 5).forEach(function(p){ %>
+            <a class="notif-item" href="<%- url_for(p.path) %>">
+              <span class="notif-dot"></span>
+              <span class="notif-text"><%= p.title %></span>
+              <span class="notif-date"><%= p.date.format('MM-DD') %></span>
+            </a>
+          <% }) %>
+        </div>
       </div>
     </div>
   </div>

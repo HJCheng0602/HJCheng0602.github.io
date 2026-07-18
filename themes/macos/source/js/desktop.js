@@ -177,8 +177,76 @@
         void icon.offsetWidth;
         icon.style.animation = 'dock-shake .4s';
       });
+    } else if (action === 'launchpad') {
+      item.addEventListener('click', function (e) {
+        e.preventDefault();
+        toggleLaunchpad();
+      });
     }
   });
+
+  /* ── Launchpad ─────────────────────────────────────────────── */
+  var launchpad = document.getElementById('launchpad');
+  var lpSearch = document.getElementById('lp-search');
+  var lpGrid = document.getElementById('lp-grid');
+  var lpEmpty = document.getElementById('lp-empty');
+
+  function openLaunchpad() {
+    if (!launchpad) return;
+    launchpad.hidden = false;
+    if (lpSearch) { lpSearch.value = ''; filterLaunchpad(''); lpSearch.focus(); }
+  }
+  function closeLaunchpad() { if (launchpad) launchpad.hidden = true; }
+  function toggleLaunchpad() {
+    if (!launchpad) return;
+    if (launchpad.hidden) openLaunchpad(); else closeLaunchpad();
+  }
+  function filterLaunchpad(q) {
+    if (!lpGrid) return;
+    var query = q.trim().toLowerCase();
+    var visible = 0;
+    lpGrid.querySelectorAll('.lp-item').forEach(function (item) {
+      var hit = !query || (item.getAttribute('data-lp-name') || '').indexOf(query) !== -1;
+      item.style.display = hit ? '' : 'none';
+      if (hit) visible++;
+    });
+    if (lpEmpty) lpEmpty.hidden = visible > 0;
+  }
+
+  if (launchpad) {
+    launchpad.addEventListener('click', function (e) {
+      // Click on empty backdrop closes; clicks on items fall through below.
+      if (e.target === launchpad) closeLaunchpad();
+    });
+    if (lpSearch) {
+      lpSearch.addEventListener('input', function () { filterLaunchpad(lpSearch.value); });
+      lpSearch.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeLaunchpad();
+        else if (e.key === 'Enter') {
+          var first = lpGrid.querySelector('.lp-item:not([style*="none"])');
+          if (first) first.click();
+        }
+      });
+    }
+    lpGrid.querySelectorAll('.lp-item').forEach(function (item) {
+      item.addEventListener('click', function (e) {
+        var winId = item.getAttribute('data-open-window');
+        var win = winId ? document.getElementById(winId) : null;
+        if (win) {
+          // Desktop page: open the Finder window in place instead of navigating.
+          e.preventDefault();
+          win.hidden = false;
+          win.classList.remove('minimized');
+          bringToFront(win);
+          closeLaunchpad();
+        }
+        // Otherwise follow the href (navigation makes closing unnecessary).
+      });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && launchpad && !launchpad.hidden) closeLaunchpad();
+    });
+  }
 
   /* ── Spotlight search ──────────────────────────────────────── */
   var spotlight = document.getElementById('spotlight');
@@ -299,22 +367,98 @@
     update();
   })();
 
-  /* ── Daily wallpaper rotation ──────────────────────────────── */
-  (function initWallpaper() {
-    var wp = document.querySelector('.wallpaper');
-    if (!wp) return;
-    var list = [];
-    try { list = JSON.parse(wp.getAttribute('data-wallpapers') || '[]'); } catch (e) { list = []; }
-    if (!list.length) return;
-    var idx = Math.floor(Date.now() / 86400000) % list.length;
-    var url = '/img/wallpapers/' + list[idx] + '.jpg';
+  /* ── Daily wallpaper rotation (+ manual switching) ─────────── */
+  var wpEl = document.querySelector('.wallpaper');
+  var wpList = [];
+  var wpIdx = 0;
+  if (wpEl) {
+    try { wpList = JSON.parse(wpEl.getAttribute('data-wallpapers') || '[]'); } catch (e) { wpList = []; }
+    wpIdx = Math.floor(Date.now() / 86400000) % Math.max(wpList.length, 1);
+    try {
+      var saved = parseInt(localStorage.getItem('mac_wallpaper_idx'), 10);
+      if (!isNaN(saved) && wpList.length) wpIdx = saved % wpList.length;
+    } catch (e) { /* private mode */ }
+  }
+  function applyWallpaper(idx) {
+    if (!wpEl || !wpList.length) return;
+    wpIdx = ((idx % wpList.length) + wpList.length) % wpList.length;
+    var url = '/img/wallpapers/' + wpList[wpIdx] + '.jpg';
     var img = new Image();
     img.onload = function () {
-      wp.style.background =
+      wpEl.style.background =
         "linear-gradient(rgba(8,14,26,.34), rgba(8,14,26,.34)), url('" + url + "') center/cover no-repeat, " +
         "linear-gradient(160deg, #0d1b2e 0%, #10263f 45%, #0a1a2c 100%)";
     };
     img.src = url;
+  }
+  applyWallpaper(wpIdx);
+  function nextWallpaper() {
+    applyWallpaper(wpIdx + 1);
+    try { localStorage.setItem('mac_wallpaper_idx', String(wpIdx)); } catch (e) {}
+  }
+
+  /* ── Desktop right-click context menu ──────────────────────── */
+  (function initContextMenu() {
+    // Desktop page only; touch devices have no meaningful right-click.
+    if (!document.querySelector('.desktop-icons')) return;
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+    var desktop = document.querySelector('.desktop');
+    if (!desktop) return;
+
+    var menu = document.createElement('div');
+    menu.className = 'ctx-menu glass';
+    menu.hidden = true;
+    menu.innerHTML =
+      '<button class="menu-item" data-ctx="wallpaper">Change Wallpaper</button>' +
+      '<button class="menu-item" data-ctx="launchpad">Open Launchpad</button>' +
+      '<button class="menu-item" data-ctx="finder">New Finder Window</button>' +
+      '<div class="menu-sep"></div>' +
+      '<button class="menu-item" data-ctx="lock">Lock Screen</button>' +
+      '<button class="menu-item" data-ctx="about">About This Blog</button>';
+    document.body.appendChild(menu);
+
+    function openMenu(x, y) {
+      menu.hidden = false;
+      var mw = menu.offsetWidth, mh = menu.offsetHeight;
+      menu.style.left = Math.min(x, window.innerWidth - mw - 8) + 'px';
+      menu.style.top = Math.min(y, window.innerHeight - mh - 8) + 'px';
+    }
+    function closeMenu() { menu.hidden = true; }
+
+    desktop.addEventListener('contextmenu', function (e) {
+      if (e.target.closest('.window')) return; // keep native menu inside windows
+      e.preventDefault();
+      openMenu(e.clientX, e.clientY);
+    });
+    document.addEventListener('click', function (e) {
+      if (!menu.contains(e.target)) closeMenu();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeMenu();
+    });
+    window.addEventListener('resize', closeMenu);
+
+    menu.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-ctx]');
+      if (!btn) return;
+      closeMenu();
+      var act = btn.getAttribute('data-ctx');
+      if (act === 'wallpaper') nextWallpaper();
+      else if (act === 'launchpad') openLaunchpad();
+      else if (act === 'finder') {
+        var win = document.getElementById('finder-all-posts');
+        if (win) { win.hidden = false; win.classList.remove('minimized'); bringToFront(win); }
+      } else if (act === 'lock') {
+        var ls = document.getElementById('lockscreen');
+        if (ls) {
+          ls.classList.remove('unlocked');
+          document.body.classList.add('is-locked');
+          try { sessionStorage.removeItem('mac_unlocked'); } catch (err) {}
+        }
+      } else if (act === 'about') {
+        window.location.href = '/about/';
+      }
+    });
   })();
 
   /* ── Menubar dropdowns & panels ────────────────────────────── */

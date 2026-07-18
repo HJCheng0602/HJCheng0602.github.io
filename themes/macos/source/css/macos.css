@@ -182,6 +182,116 @@ a:hover { color: #8ecbff; }
 .spotlight-results .sp-date { color: rgba(255, 255, 255, .45); font-size: .76rem; white-space: nowrap; }
 .spotlight-results .sp-empty { padding: 10px 18px; color: rgba(255, 255, 255, .45); font-size: .85rem; }
 
+/* ── Notification center (inside the clock panel) ────────────── */
+.panel-calendar { width: 272px; }
+.notif-title { margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, .1); }
+.notif-list { display: flex; flex-direction: column; }
+.notif-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, .82);
+  font-size: .76rem;
+}
+.notif-item:hover { background: rgba(10, 132, 255, .35); color: #fff; }
+.notif-dot { width: 6px; height: 6px; border-radius: 50%; background: #0a84ff; flex: none; }
+.notif-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.notif-date { flex: none; color: rgba(255, 255, 255, .45); font-size: .68rem; }
+
+/* ── Launchpad ───────────────────────────────────────────────── */
+.launchpad {
+  position: fixed;
+  inset: 0;
+  z-index: 940;
+  background: rgba(12, 18, 30, .55);
+  -webkit-backdrop-filter: blur(34px) saturate(1.5);
+  backdrop-filter: blur(34px) saturate(1.5);
+  overflow-y: auto;
+  padding: 76px 24px 60px;
+}
+.lp-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: min(320px, 86vw);
+  margin: 0 auto;
+  padding: 6px 12px;
+  border-radius: 9px;
+  background: rgba(40, 42, 54, .6);
+  border: 1px solid rgba(255, 255, 255, .14);
+  color: rgba(255, 255, 255, .5);
+  font-size: .82rem;
+}
+.lp-search {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f2f2f5;
+  font-family: inherit;
+  font-size: .82rem;
+}
+.lp-search::placeholder { color: rgba(255, 255, 255, .4); }
+.lp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: 30px 16px;
+  max-width: 900px;
+  margin: 38px auto 0;
+}
+.lp-item { display: flex; flex-direction: column; align-items: center; gap: 9px; text-decoration: none; }
+.lp-icon {
+  width: 68px;
+  height: 68px;
+  border-radius: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .35);
+  transition: transform .15s ease;
+}
+.lp-item:hover .lp-icon { transform: scale(1.09); }
+.lp-icon-plain { background: transparent; box-shadow: none; border-radius: 0; }
+.lp-icon-plain svg { width: 100%; height: 100%; filter: drop-shadow(0 6px 12px rgba(0, 0, 0, .4)); }
+.lp-tint-blue { background: linear-gradient(160deg, #4aa3ff, #0a5cff); }
+.lp-tint-green { background: linear-gradient(160deg, #5ad66f, #1da447); }
+.lp-tint-orange { background: linear-gradient(160deg, #ffb24a, #f5720a); }
+.lp-tint-purple { background: linear-gradient(160deg, #b98bff, #6a3df0); }
+.lp-tint-teal { background: linear-gradient(160deg, #4fd6d0, #0a9db5); }
+.lp-tint-pink { background: linear-gradient(160deg, #ff8fb0, #e83a75); }
+.lp-label {
+  max-width: 104px;
+  color: #f2f2f5;
+  font-size: .74rem;
+  text-align: center;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, .5);
+}
+.lp-empty { text-align: center; color: rgba(255, 255, 255, .55); margin-top: 60px; font-size: .9rem; }
+
+/* ── Desktop context menu ────────────────────────────────────── */
+.ctx-menu {
+  position: fixed;
+  z-index: 970;
+  min-width: 196px;
+  border-radius: 10px;
+  padding: 5px;
+  background: rgba(34, 36, 46, .86);
+  -webkit-backdrop-filter: blur(28px) saturate(1.6);
+  backdrop-filter: blur(28px) saturate(1.6);
+  border: 1px solid rgba(255, 255, 255, .12);
+  box-shadow: 0 14px 44px rgba(0, 0, 0, .45);
+}
+
 /* ── Desktop area ────────────────────────────────────────────── */
 .desktop {
   position: fixed;
@@ -921,4 +1031,10 @@ figure.highlight figcaption {
   /* Lock screen */
   .lock-time { font-size: 4rem; }
   .lock-avatar { width: 60px; height: 60px; }
+
+  /* Launchpad */
+  .launchpad { padding: 64px 14px 48px; }
+  .lp-grid { grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 22px 10px; }
+  .lp-icon { width: 56px; height: 56px; border-radius: 14px; font-size: 1.4rem; }
+  .lp-label { max-width: 88px; font-size: .68rem; }
 }

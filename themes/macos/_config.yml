@@ -48,6 +48,10 @@ dock:
     icon: finder
     url: /archives
     action: all-posts
+  - name: Launchpad
+    icon: launchpad
+    url: '#'
+    action: launchpad
   - name: Readings
     icon: book
     url: /readings/

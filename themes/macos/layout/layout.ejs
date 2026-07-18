@@ -26,6 +26,46 @@ if (!pageTitle) {
 <main class="desktop">
   <%- body %>
 </main>
+<%
+// Launchpad data: fixed pages + topic folders + all posts
+var lpPages = [
+  { name: 'Archives', url: '/archives', icon: 'fas fa-folder-open', tint: 'blue' },
+  { name: 'Readings', url: '/readings/', icon: 'fas fa-book-open', tint: 'green' },
+  { name: 'Projects', url: '/projects/', icon: 'fas fa-rocket', tint: 'orange' },
+  { name: 'Publications', url: '/publications/', icon: 'fas fa-graduation-cap', tint: 'purple' },
+  { name: 'Links', url: '/links/', icon: 'fas fa-link', tint: 'teal' },
+  { name: 'About', url: '/about/', icon: 'fas fa-user', tint: 'pink' }
+];
+var lpFolders = topic_folders();
+var lpPosts = site.posts.toArray().sort(function(a, b){ return b.date - a.date; });
+%>
+<div class="launchpad" id="launchpad" hidden>
+  <div class="lp-search-box glass">
+    <i class="fas fa-magnifying-glass"></i>
+    <input class="lp-search" id="lp-search" type="text" placeholder="Search" aria-label="Search Launchpad">
+  </div>
+  <div class="lp-grid" id="lp-grid">
+    <% lpPages.forEach(function(pg){ %>
+      <a class="lp-item" href="<%= pg.url %>" data-lp-name="<%= pg.name.toLowerCase() %>">
+        <span class="lp-icon lp-tint-<%= pg.tint %>"><i class="<%= pg.icon %>"></i></span>
+        <span class="lp-label"><%= pg.name %></span>
+      </a>
+    <% }) %>
+    <% lpFolders.forEach(function(f, i){ %>
+      <a class="lp-item" href="/" data-lp-name="<%= f.name.toLowerCase() %>" data-open-window="finder-topic-<%= i %>">
+        <span class="lp-icon lp-icon-plain"><%- partial('partials/icon', {name: 'folder'}) %></span>
+        <span class="lp-label"><%= f.name %></span>
+      </a>
+    <% }) %>
+    <% lpPosts.forEach(function(p){ %>
+      <a class="lp-item" href="<%- url_for(p.path) %>" data-lp-name="<%= p.title.toLowerCase() %>">
+        <span class="lp-icon lp-icon-plain"><%- partial('partials/icon', {name: 'md'}) %></span>
+        <span class="lp-label"><%= p.title %></span>
+      </a>
+    <% }) %>
+  </div>
+  <div class="lp-empty" id="lp-empty" hidden>No Results</div>
+</div>
 <%- partial('partials/dock') %>
 <script src="/js/desktop.js"></script>
 </body>
