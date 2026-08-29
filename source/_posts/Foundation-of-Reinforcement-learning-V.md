@@ -1,6 +1,10 @@
 ---
 title: Foundation of Reinforcement learning(V)
 date: 2026-05-18 21:19:20
+series: reinforcement-learning-foundations
+series_order: 5
+timeline_title: V · SARSA 与 Q-learning
+timeline_metric: 05-18
 description: "SARSA and Q-learning"
 tags: 
   - Reinforcement learning

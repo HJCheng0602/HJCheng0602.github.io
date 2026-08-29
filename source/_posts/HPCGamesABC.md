@@ -1,6 +1,10 @@
 ---
 title: HPCGames 题解 A B C 题
 date: 2026-02-04 8:18:00
+series: hpcgames-solutions
+series_order: 1
+timeline_title: A–C · 基础题
+timeline_metric: 02-04
 description: "最近参加了HPCGames比赛，写下这篇Blog记录一下自己对A B C题的理解与题解"
 tags:
   - HPC games

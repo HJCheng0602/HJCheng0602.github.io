@@ -1,6 +1,10 @@
 ---
 title: HPCGames 题解 D E 题
 date: 2026-02-05 8:18:00
+series: hpcgames-solutions
+series_order: 2
+timeline_title: D–E · 进阶题
+timeline_metric: 02-05
 description: "继上篇文章介绍了 HPCGames 题解 A B C 题，本文将继续探讨 D E 题的解决方案。"
 tags:
   - HPC games

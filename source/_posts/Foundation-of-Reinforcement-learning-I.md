@@ -1,6 +1,10 @@
 ---
 title: Foundation of Reinforcement learning(I)
 date: 2026-05-16 15:00:21
+series: reinforcement-learning-foundations
+series_order: 1
+timeline_title: I · MDP 与动态规划
+timeline_metric: 05-16
 description: "foundation knowledge of Reinforcement learning, study for the coming exam"
 tags: 
   - Reinforcement learning

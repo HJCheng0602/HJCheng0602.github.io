@@ -105,3 +105,12 @@ timeline_series:
   flash-attention-b300:
     title: Flash Attention CUDA Kernel 优化
     subtitle: 从 56 到 986 TFLOPS · B300
+  paged-attention-kernel:
+    title: Paged Attention Kernel Optimization
+    subtitle: vLLM kernel 分析与优化
+  reinforcement-learning-foundations:
+    title: Reinforcement Learning Foundations
+    subtitle: MDP → Bellman → Model-free RL
+  hpcgames-solutions:
+    title: HPCGames 题解
+    subtitle: A–E · 并行计算

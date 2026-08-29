@@ -1,6 +1,10 @@
 ---
 title: Foundation of Reinforcement learning(IV)
 date: 2026-05-18 12:18:13
+series: reinforcement-learning-foundations
+series_order: 4
+timeline_title: IV · Monte Carlo 与 TD
+timeline_metric: 05-18
 description: "Model-free Reinforcement learning, study for the coming exam"
 tags: 
   - Reinforcement learning

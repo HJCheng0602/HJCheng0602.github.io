@@ -1,6 +1,10 @@
 ---
 title: Foundation of Reinforcement learning(II)
 date: 2026-05-17 09:15:46
+series: reinforcement-learning-foundations
+series_order: 2
+timeline_title: II · Bellman Equation
+timeline_metric: 05-17
 description: "foundation knowledge of Reinforcement learning, study for the coming exam"
 tags: 
   - Reinforcement learning

@@ -1,6 +1,10 @@
 ---
 title: Foundation of Reinforcement learning(III)
 date: 2026-05-17 10:34:13
+series: reinforcement-learning-foundations
+series_order: 3
+timeline_title: III · Model-based RL
+timeline_metric: 05-17
 description: "Model based Reinforcement learning, study for the coming exam"
 tags: 
   - Reinforcement learning

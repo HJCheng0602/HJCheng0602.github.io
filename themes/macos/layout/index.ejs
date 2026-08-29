@@ -36,6 +36,16 @@ timelinePosts.forEach(function(p){
     group.items.push({ type: 'post', post: p });
   }
 });
+// A hidden/unpublished sibling can leave only one visible post in production.
+// In that case, keep the ordinary timeline row instead of drawing a one-leaf tree.
+timelineGroups.forEach(function(group){
+  group.items = group.items.map(function(item){
+    if (item.type === 'series' && item.posts.length === 1) {
+      return { type: 'post', post: item.posts[0] };
+    }
+    return item;
+  });
+});
 // All tags (most-used first) for the Tags widget / tag filter windows
 var tags = site.tags.toArray().sort(function(a, b){ return b.length - a.length; });
 // Profile card data
@@ -113,6 +123,10 @@ var tagCount = site.tags.length;
           <div class="tl-ym"><%= g.ym %></div>
           <% g.items.forEach(function(item){ %>
             <% if (item.type === 'series') { %>
+              <% var seriesPosts = item.posts.slice().sort(function(a, b){
+                var byOrder = Number(a.series_order || 0) - Number(b.series_order || 0);
+                return byOrder || (a.date - b.date);
+              }); %>
               <div class="tl-series">
                 <div class="tl-series-head">
                   <span class="tl-series-dot"></span>
@@ -123,7 +137,7 @@ var tagCount = site.tags.length;
                   <span class="tl-series-meta"><%= item.posts[0].date.format('MM-DD') %></span>
                 </div>
                 <div class="tl-series-children">
-                  <% item.posts.forEach(function(p){ %>
+                  <% seriesPosts.forEach(function(p){ %>
                     <a class="tl-series-item" href="<%- url_for(p.path) %>" title="<%= p.title %>">
                       <span class="tl-item-title"><%= p.timeline_title || p.title %></span>
                       <% if (p.timeline_metric) { %><span class="tl-metric"><%= p.timeline_metric %></span><% } %>

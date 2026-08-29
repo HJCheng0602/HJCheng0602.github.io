@@ -1,6 +1,10 @@
 ---
 title: Paged attention kernel optimization(II)
 date: 2026-05-26 16:17:35
+series: paged-attention-kernel
+series_order: 2
+timeline_title: II · 算子溯源与分析
+timeline_metric: 05-26
 tags: 
     - CUDA
     - kernel optimization

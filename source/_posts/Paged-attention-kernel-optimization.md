@@ -1,6 +1,10 @@
 ---
 title: Paged attention kernel optimization(I)
 date: 2026-05-22 18:34:24
+series: paged-attention-kernel
+series_order: 1
+timeline_title: I · vLLM kernel 基础
+timeline_metric: 05-22
 tags: 
     - CUDA
     - kernel optimization
