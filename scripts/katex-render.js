@@ -27,6 +27,57 @@ function renderMath(tex, displayMode) {
   }
 }
 
+// Let marked recognize math before it applies Markdown emphasis rules. Without
+// this, a formula such as `_t ... _j` becomes `<em>t ... </em>j` before KaTeX
+// sees it, and KaTeX renders the tag name as literal mathematical text.
+hexo.extend.filter.register('marked:extensions', function(extensions) {
+  extensions.push({
+    name: 'blockMath',
+    level: 'block',
+    tokenizer(src) {
+      const cap = /^\s{0,3}\$\$[ \t]*\n?([\s\S]*?)\n?[ \t]*\$\$(?:[ \t]*(?:\n|$))/.exec(src);
+      if (!cap) return undefined;
+
+      return {
+        type: 'blockMath',
+        raw: cap[0],
+        math: cap[1],
+      };
+    },
+    renderer(token) {
+      return `<p>${renderMath(token.math, true)}</p>\n`;
+    },
+  });
+
+  extensions.push({
+    name: 'inlineMath',
+    level: 'inline',
+    start(src) {
+      const index = src.indexOf('$');
+      return index < 0 ? undefined : index;
+    },
+    tokenizer(src) {
+      const cap = /^\$(?!\$)([^$\n]+?)\$(?!\$)/.exec(src);
+      if (!cap) return undefined;
+
+      return {
+        type: 'inlineMath',
+        raw: cap[0],
+        math: cap[1],
+      };
+    },
+    renderer(token) {
+      return renderMath(token.math, false);
+    },
+  });
+});
+
+function restoreMarkdownEmphasis(tex) {
+  return tex
+    .replace(/<strong>([\s\S]*?)<\/strong>/g, '__$1__')
+    .replace(/<em>([\s\S]*?)<\/em>/g, '_$1_');
+}
+
 hexo.extend.filter.register('after_render:html', function(html) {
   // Highlight.js splits CUDA <<<>>> into spaced tokens — merge them back inside code blocks
   html = html.replace(/<(?:pre|code)[^>]*>[\s\S]*?<\/(?:pre|code)>/g, function(block) {
@@ -41,7 +92,7 @@ hexo.extend.filter.register('after_render:html', function(html) {
     /(?:<br>|(?<=<p>))\s*\$\$([\s\S]*?)\$\$\s*(?=<br>|<\/p>)/g,
     function(_, inner) {
       // Strip <br> tags inside, decode HTML entities
-      const tex = decodeEntities(inner.replace(/<br>/g, '\n'));
+      const tex = decodeEntities(restoreMarkdownEmphasis(inner).replace(/<br>/g, '\n'));
       return renderMath(tex, true);
     }
   );
@@ -51,7 +102,7 @@ hexo.extend.filter.register('after_render:html', function(html) {
   html = html.replace(
     /(?<!\$)\$(?!\$)([^$\n<]{1,300}?)(?<!\$)\$(?!\$)/g,
     function(_, tex) {
-      return renderMath(decodeEntities(tex), false);
+      return renderMath(decodeEntities(restoreMarkdownEmphasis(tex)), false);
     }
   );
 

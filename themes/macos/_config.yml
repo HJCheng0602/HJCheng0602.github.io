@@ -35,6 +35,7 @@ topic_folders:
       - TensorParallel
       - MoE-vs-Dense-Models-in-Inference
       - nanopd
+      - kdd
   - name: HPC Games
     match: ^HPCGames
   - name: Basics
@@ -97,3 +98,10 @@ wallpapers:
   - mountains
   - fluid
   - night
+
+# Consecutive posts sharing a series id are compressed into a radix-tree-like
+# branch in the desktop Timeline. Article pages keep their complete titles.
+timeline_series:
+  flash-attention-b300:
+    title: Flash Attention CUDA Kernel 优化
+    subtitle: 从 56 到 986 TFLOPS · B300

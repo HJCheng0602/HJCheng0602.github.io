@@ -1,13 +1,40 @@
 <%
 var folders = topic_folders();
 var allPosts = site.posts.toArray().sort(function(a, b){ return b.date - a.date; });
-// Group posts by year-month for the Timeline widget
+// Group posts by year-month for the Timeline widget. Consecutive posts with
+// the same series id share a single parent, like a compressed radix-tree path.
+var seriesConfig = theme.timeline_series || {};
+var timelinePosts = allPosts.slice().sort(function(a, b){
+  var byDate = b.date - a.date;
+  if (byDate) return byDate;
+  if (a.series && a.series === b.series) {
+    return Number(a.series_order || 0) - Number(b.series_order || 0);
+  }
+  return 0;
+});
 var timelineGroups = [];
 var ymSeen = {};
-allPosts.forEach(function(p){
+timelinePosts.forEach(function(p){
   var ym = p.date.format('YYYY-MM');
-  if (!ymSeen[ym]) { ymSeen[ym] = { ym: ym, posts: [] }; timelineGroups.push(ymSeen[ym]); }
-  ymSeen[ym].posts.push(p);
+  if (!ymSeen[ym]) { ymSeen[ym] = { ym: ym, items: [] }; timelineGroups.push(ymSeen[ym]); }
+  var group = ymSeen[ym];
+  var last = group.items[group.items.length - 1];
+  if (p.series) {
+    if (!last || last.type !== 'series' || last.id !== p.series) {
+      var meta = seriesConfig[p.series] || {};
+      last = {
+        type: 'series',
+        id: p.series,
+        title: meta.title || p.series,
+        subtitle: meta.subtitle || '',
+        posts: []
+      };
+      group.items.push(last);
+    }
+    last.posts.push(p);
+  } else {
+    group.items.push({ type: 'post', post: p });
+  }
 });
 // All tags (most-used first) for the Tags widget / tag filter windows
 var tags = site.tags.toArray().sort(function(a, b){ return b.length - a.length; });
@@ -84,12 +111,33 @@ var tagCount = site.tags.length;
       <% timelineGroups.forEach(function(g){ %>
         <div class="tl-group">
           <div class="tl-ym"><%= g.ym %></div>
-          <% g.posts.forEach(function(p){ %>
-            <a class="tl-item" href="<%- url_for(p.path) %>" title="<%= p.title %>">
-              <span class="tl-dot"></span>
-              <span class="tl-item-title"><%= p.title %></span>
-              <span class="tl-day"><%= p.date.format('MM-DD') %></span>
-            </a>
+          <% g.items.forEach(function(item){ %>
+            <% if (item.type === 'series') { %>
+              <div class="tl-series">
+                <div class="tl-series-head">
+                  <span class="tl-series-dot"></span>
+                  <span class="tl-series-copy">
+                    <span class="tl-series-title"><%= item.title %></span>
+                    <% if (item.subtitle) { %><span class="tl-series-subtitle"><%= item.subtitle %> · <%= item.posts.length %> parts</span><% } %>
+                  </span>
+                  <span class="tl-series-meta"><%= item.posts[0].date.format('MM-DD') %></span>
+                </div>
+                <div class="tl-series-children">
+                  <% item.posts.forEach(function(p){ %>
+                    <a class="tl-series-item" href="<%- url_for(p.path) %>" title="<%= p.title %>">
+                      <span class="tl-item-title"><%= p.timeline_title || p.title %></span>
+                      <% if (p.timeline_metric) { %><span class="tl-metric"><%= p.timeline_metric %></span><% } %>
+                    </a>
+                  <% }) %>
+                </div>
+              </div>
+            <% } else { var p = item.post; %>
+              <a class="tl-item" href="<%- url_for(p.path) %>" title="<%= p.title %>">
+                <span class="tl-dot"></span>
+                <span class="tl-item-title"><%= p.title %></span>
+                <span class="tl-day"><%= p.date.format('MM-DD') %></span>
+              </a>
+            <% } %>
           <% }) %>
         </div>
       <% }) %>
