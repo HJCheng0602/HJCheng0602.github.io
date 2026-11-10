@@ -12,6 +12,18 @@ I am an undergraduate student majoring in Intelligence Science and Technology at
 
 **Peking University** — B.Sc. Intelligence Science and Technology, 2024 – present
 
+## Experience
+
+<p class="experience-entry">
+  <img src="/img/experience/tencent.png" alt="Tencent logo" width="2162" height="889">
+  <span><strong>Tencent</strong><br>Qingyun Plan Intern · Interactive Entertainment Group (IEG)<br><small>Nov 2026 – Present</small></span>
+</p>
+
+<p class="experience-entry">
+  <img src="/img/experience/alibaba-group.png" alt="Alibaba Group logo" width="2072" height="266">
+  <span><strong>Alibaba Group Holding Limited</strong><br>Platform Technology Intern<br><small>Jun 2026 – Nov 2026</small></span>
+</p>
+
 ## About This Site
 
 This site is a place where I write down what I learn, what I find interesting, and occasional thoughts. Posts are mostly reading notes on ML Systems papers and topics. Some posts are in Chinese, some in English.
